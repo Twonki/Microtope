@@ -34,6 +34,7 @@ stages:
           publishJUnitResults: true
           testResultsFiles: '**/surefire-reports/TEST-*.xml'
           testRunTitle: 'Worker MVN'
+          codeCoverageToolOption: 'JaCoCo'
           javaHomeOption: 'JDKVersion'
           jdkVersionOption: '1.12'
           mavenVersionOption: 'Default'
@@ -41,8 +42,6 @@ stages:
           mavenAuthenticateFeed: false
           effectivePomSkip: false
           sonarQubeRunAnalysis: false
-          checkStyleRunAnalysis: false
-          findBugsRunAnalysis: false
       - task: Docker@2    
         inputs:
           command: 'build'
