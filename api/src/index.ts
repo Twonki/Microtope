@@ -6,6 +6,7 @@ import * as indexRoutes from "./routes/index";
 const log = factory.getLogger("index");
 
 const app = express();
+
 let exposedPort: number = 8080; // default exposedPort to listen
 
 log.info("Starting API ... ");
