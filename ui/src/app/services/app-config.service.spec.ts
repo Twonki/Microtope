@@ -13,7 +13,7 @@ describe('AppConfigService', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       // Provide both the service-to-test and its (spy) dependency
-      providers: [AppConfigService, { provide: HttpClient, useValue: httpSpy }]
+      providers: [AppConfigService]
     });
     // Inject both the service-to-test and its (spy) dependency
     service = TestBed.get(AppConfigService);
@@ -21,7 +21,7 @@ describe('AppConfigService', () => {
   });
 
   it('should be created', () => {
-    const service: AppConfigService = TestBed.get(AppConfigService);
+    service = TestBed.get(AppConfigService);
     expect(service).toBeTruthy();
   });
 });

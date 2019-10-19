@@ -1,30 +1,34 @@
-import {TestBed} from '@angular/core/testing';
-import {of} from 'rxjs';
-import {SelectedService} from '../../services/selected.service';
-import {TopRankableComponent} from './top-rankable.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { SelectedService } from '../../services/selected.service';
+import { TopRankableComponent } from './top-rankable.component';
+import { of } from 'rxjs';
 
 describe(`${TopRankableComponent.constructor.name}`, () => {
-  beforeAll(() => {
-    const spy = jasmine.createSpyObj('select', 'selected$');
+  let fixture: ComponentFixture<TopRankableComponent<any>>;
+  let component: TopRankableComponent<any>;
+
+  beforeEach(() => {
+    const spy = jasmine.createSpyObj('select', ['selected$']);
     TestBed.configureTestingModule({
       declarations: [TopRankableComponent],
-      providers: [
-        {provide: SelectedService, useValue: spy}
-      ]
-    });
+      providers: [{ provide: SelectedService, useValue: spy }]
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(TopRankableComponent);
+    component = fixture.componentInstance;
   });
 
-  it('should return empty Array if given empty Array', () => {
-
-    const fixture = TestBed.createComponent(TopRankableComponent);
-    const comp = fixture.componentInstance;
-
+  it('should return empty Array if given empty Array', done => {
     // Simulate "Input"
-    // comp.items = [];
+    component.items = of([]);
 
     // Trigger change detection, this is where ngOninit runs
     fixture.detectChanges();
 
-    expect(comp.sortedItems).toBe(of([]));
+    component.sortedItems.subscribe(items => {
+      expect(items).toEqual([]);
+      done();
+    });
   });
 });

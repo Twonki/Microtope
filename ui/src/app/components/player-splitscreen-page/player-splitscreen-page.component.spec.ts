@@ -1,5 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 
+import { AppConfigService } from '../../services/app-config.service';
+import { PlayerService } from '../../services/player.service';
 import { PlayerSplitscreenPageComponent } from './player-splitscreen-page.component';
 
 describe('PlayerSplitscreenPageComponent', () => {
@@ -8,9 +10,18 @@ describe('PlayerSplitscreenPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlayerSplitscreenPageComponent ]
-    })
-    .compileComponents();
+      declarations: [PlayerSplitscreenPageComponent],
+      providers: [
+        {
+          provide: PlayerService,
+          useValue: jasmine.createSpyObj<PlayerService>(['getAll'])
+        },
+        {
+          provide: AppConfigService,
+          useValue: jasmine.createSpyObj<AppConfigService>(['loadAppConfig'])
+        }
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
