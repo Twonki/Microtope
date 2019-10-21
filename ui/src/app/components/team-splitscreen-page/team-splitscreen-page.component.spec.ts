@@ -1,21 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {TeamService} from '../../services/team.service';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 
+import { TeamService } from '../../services/team.service';
 import { TeamSplitscreenPageComponent } from './team-splitscreen-page.component';
 
 describe('TeamSplitscreenPageComponent', () => {
   let component: TeamSplitscreenPageComponent;
   let fixture: ComponentFixture<TeamSplitscreenPageComponent>;
 
-  beforeAll(async(() => {
-    const spy = jasmine.createSpyObj('teamTeamService', 'getAll');
+  beforeEach(async(() => {
+    const spy = jasmine.createSpyObj('teamTeamService', ['getAll']);
     TestBed.configureTestingModule({
-      declarations: [ TeamSplitscreenPageComponent ],
-      providers: [
-        {provide: TeamService, useValue: spy}
-      ]
-    })
-    .compileComponents();
+      declarations: [TeamSplitscreenPageComponent],
+      providers: [{ provide: TeamService, useValue: spy }]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,35 +1,27 @@
-
 import { AppConfigService } from './app-config.service';
-import { HttpClientModule } from '@angular/common/http';
-
-import { TestBed } from '@angular/core/testing';
-import { HttpClient } from 'selenium-webdriver/http';
+import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
 
 describe('AppConfigService', () => {
+  let service: AppConfigService;
+  let httpClientSpy: jasmine.SpyObj<HttpClient>;
 
-let service: AppConfigService;
-let httpClientSpy: jasmine.SpyObj<HttpClient>;
+  beforeEach(() => {
+    const httpSpy = jasmine.createSpyObj('HttpClient', ['get', 'put', 'push']);
 
-beforeEach(() => {
-
-  const httpSpy = jasmine.createSpyObj('HttpClient', ['get', 'put', 'push']);
-
-  TestBed.configureTestingModule({
-    imports: [ HttpClientTestingModule ],
-    // Provide both the service-to-test and its (spy) dependency
-    providers: [
-      AppConfigService,
-      { provide: HttpClient, useValue: httpSpy}
-    ]
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      // Provide both the service-to-test and its (spy) dependency
+      providers: [AppConfigService]
+    });
+    // Inject both the service-to-test and its (spy) dependency
+    service = TestBed.get(AppConfigService);
+    httpClientSpy = TestBed.get(HttpClient);
   });
-  // Inject both the service-to-test and its (spy) dependency
-  service = TestBed.get(AppConfigService);
-  httpClientSpy = TestBed.get(HttpClient);
-});
 
-it('should be created', () => {
-    const service: AppConfigService = TestBed.get(AppConfigService);
+  it('should be created', () => {
+    service = TestBed.get(AppConfigService);
     expect(service).toBeTruthy();
   });
 });

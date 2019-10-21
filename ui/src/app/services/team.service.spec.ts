@@ -1,19 +1,20 @@
+import { AppConfigService } from './app-config.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TeamService } from './team.service';
 import { TestBed } from '@angular/core/testing';
 
-import { TeamService } from './team.service';
-
-import { HttpClient } from '@angular/common/http';
-import { AppConfigService } from './app-config.service';
-
 describe('TeamService', () => {
-
-  beforeAll(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       providers: [
-        {provide: HttpClient},
-        {provide: AppConfigService}
+        TeamService,
+        {
+          provide: AppConfigService,
+          useValue: jasmine.createSpyObj<AppConfigService>(['loadAppConfig'])
+        }
       ]
-    });
+    }).compileComponents();
   });
 
   it('should be created', () => {
