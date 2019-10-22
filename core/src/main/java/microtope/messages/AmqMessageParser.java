@@ -1,6 +1,5 @@
 package microtope.messages;
 
-import java.util.Date;
 import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;

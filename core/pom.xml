@@ -46,5 +46,224 @@
 	    </dependency>
   </dependencies>
    
+   
+   <build>
+		  <plugins>
+		  		<plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.0.0-M3</version>
+      </plugin>
+		<plugin>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>3.0.0-M3</version>
+   		</plugin>
+    		
+    	<!-- Required for Spotbugs-->
+        <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-site-plugin</artifactId>
+           <version>3.8.2</version>
+       </plugin>
+
+    	<!-- Required for Spotbugs-->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-project-info-reports-plugin</artifactId>
+            <version>3.0.0</version>
+		</plugin>   		
+   		
+ 	   <plugin>
+	       <groupId>org.apache.maven.plugins</groupId>
+	       <artifactId>maven-checkstyle-plugin</artifactId>
+	       <version>3.1.0</version>
+	       <dependencies>
+                <dependency>
+                    <groupId>com.puppycrawl.tools</groupId>
+                    <artifactId>checkstyle</artifactId>
+                    <version>8.25</version>
+                </dependency>
+            </dependencies>
+            <configuration>
+			 <configLocation>src/main/resources/checkstyle.xml</configLocation>
+	         <encoding>UTF-8</encoding>
+	         <violationSeverity>warning</violationSeverity>
+	         <consoleOutput>true</consoleOutput>
+	         <failOnViolation>true</failOnViolation>
+	         <failsOnError>true</failsOnError>
+	         <maxAllowedVialoations>20</maxAllowedVialoations>
+	         <linkXRef>false</linkXRef>
+            </configuration>
+            <executions>
+		       <execution>
+			    <id>verify</id>
+	       		<phase>verify</phase>
+		       <goals>
+		         <goal>check</goal>
+		       </goals>
+		     </execution>
+	       </executions>
+    	</plugin>
+   		
+        <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.5</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>jacoco-report</id>
+                    <phase>test</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                    <configuration>
+						<outputDirectory>target/jacoco-report</outputDirectory>
+					</configuration>
+                </execution>
+                <execution>
+                    <id>jacoco-check</id>
+                    <goals>
+                        <goal>check</goal>
+                    </goals>
+                    <configuration>
+                       	<rules>
+                       	<rule>
+						    <element>BUNDLE</element>
+						    <limits>
+						      <limit>
+						        <counter>LINE</counter>
+						        <value>COVEREDRATIO</value>
+						        <minimum>80%</minimum>
+						      </limit>
+							      <limit>
+							        <counter>INSTRUCTION</counter>
+							        <value>COVEREDRATIO</value>
+							        <minimum>0.80</minimum>
+							      </limit>
+						       <limit>
+						        <counter>CLASS</counter>
+						        <value>MISSEDCOUNT</value>
+						        <maximum>0</maximum>
+						      </limit>
+						    </limits>
+						  </rule>
+						  <rule>
+						    <element>PACKAGE</element>
+						    <limits>
+						      <limit>
+						        <counter>LINE</counter>
+						        <value>COVEREDRATIO</value>
+						        <minimum>75%</minimum>
+						      </limit>
+						    </limits>
+						  </rule>
+						  <rule>
+						    <element>CLASS</element>
+						    <excludes>
+						      <exclude>*Test</exclude>
+						    </excludes>
+						    <limits>
+						      <limit>
+						        <counter>LINE</counter>
+						        <value>COVEREDRATIO</value>
+						        <minimum>50%</minimum>
+						      </limit>
+						        <limit>
+						        <counter>INSTRUCTION</counter>
+						        <value>COVEREDRATIO</value>
+						        <minimum>0.60</minimum>
+						      </limit>
+						    </limits>
+						  </rule>
+						</rules>
+                    </configuration>
+                </execution>
+            </executions>
+			</plugin>
+			
+		<plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-pmd-plugin</artifactId>
+            <version>3.12.0</version>
+	        <configuration>
+	            <failOnViolation>true</failOnViolation> <!-- this is actually true by default, but can be disabled -->
+	            <printFailingErrors>true</printFailingErrors>
+	            <allowedViolations>3</allowedViolations>
+	        </configuration>
+	        <executions>
+	          <execution>
+	            <goals>
+	              <goal>check</goal>
+	            </goals>
+	          </execution>
+	        </executions>
+     	 </plugin>
+     	 	       		
+           <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-compiler-plugin</artifactId>
+               <version>3.8.1</version>
+               <configuration>
+                   <release>12</release>
+               </configuration>
+           </plugin>
+           
+    	<plugin>
+		  <groupId>com.github.spotbugs</groupId>
+		  <artifactId>spotbugs-maven-plugin</artifactId>
+		  <version>3.1.12.2</version>
+		  <configuration>
+		  	<maxAllowedViolations> 10</maxAllowedViolations>
+		  </configuration>
+ 			<executions>
+		       <execution>
+			    <id>verify</id>
+	       		<phase>verify</phase>
+		       <goals>
+		         <goal>check</goal>
+		       </goals>
+		     </execution>
+	       </executions>
+		</plugin>
+
+	  </plugins>
+  
+  </build>
+  
+     <reporting>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>3.1.0</version>
+	       <configuration>
+			    <configLocation>src/main/resources/checkstyle.xml</configLocation>
+	         <encoding>UTF-8</encoding>
+	         <consoleOutput>true</consoleOutput>
+	         <linkXRef>false</linkXRef>
+	       </configuration>
+          <reportSets>
+            <reportSet>
+              <reports>
+                <report>checkstyle</report>
+              </reports>
+            </reportSet>
+          </reportSets>
+        </plugin>
+        
+        <plugin>
+		  <groupId>com.github.spotbugs</groupId>
+		  <artifactId>spotbugs-maven-plugin</artifactId>
+		  <version>3.1.12.2</version>
+		</plugin>
+
+      </plugins>
+    </reporting>
+   
 
 </project>
