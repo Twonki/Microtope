@@ -6,6 +6,8 @@ import javax.jms.JMSException;
 
 import org.junit.jupiter.api.Test;
 
+import microtope.program.App;
+
 class AppTests {
 
 	@Test
