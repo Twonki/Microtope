@@ -176,6 +176,10 @@
 						        <minimum>75%</minimum>
 						      </limit>
 						    </limits>
+						    <excludes>
+						      <exclude>*program*</exclude>
+						      <exclude>*App</exclude>
+						    </excludes>
 						  </rule>
 						  <rule>
 						    <element>CLASS</element>
@@ -239,7 +243,7 @@
 	                <!-- MainClass in mainfest make a executable jar -->
 					<archive>
 					  <manifest>
-						<mainClass>microtope.pulser.App</mainClass>
+						<mainClass>microtope.program.App</mainClass>
 					  </manifest>
 					</archive>
 	            </configuration>
@@ -263,7 +267,7 @@
 			        <archive>
 			          <manifest>
 			            <addClasspath>true</addClasspath>
-			            <mainClass>microtope.pulser.App</mainClass>
+			            <mainClass>microtope.program.App</mainClass>
 			          </manifest>
 			        </archive>
 			      </configuration>

@@ -1,4 +1,4 @@
-package microtope.pulser;
+package microtope.program;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
@@ -9,6 +9,8 @@ import java.util.concurrent.Future;
 import javax.jms.JMSException;
 
 import microtope.config.ActiveMqConfiguration;
+import microtope.pulser.ActiveMqMessageSender;
+import microtope.pulser.Worker;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
