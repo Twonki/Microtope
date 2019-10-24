@@ -2,9 +2,9 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>microtope</groupId>
+  <groupId>git.twonki.microtope</groupId>
   <artifactId>worker</artifactId>
-  <version>0.1</version>
+  <version>0.1.0</version>
   <packaging>jar</packaging>
    
   <description>Long Running Service. Takes Messages from an ActiveMQ and puts it into a database</description>
@@ -18,17 +18,10 @@
 
   <dependencies>
   	<!-- ActiveMQ Related -->
-	 	<!-- ActiveMQ Related -->
 		<dependency>
 	  <groupId>org.apache.activemq</groupId>
 	  <artifactId>activemq-all</artifactId>
 	  <version>5.15.10</version>
-	</dependency>
-	<!-- https://mvnrepository.com/artifact/javax.jms/javax.jms-api -->
-	<dependency>
-	    <groupId>javax.jms</groupId>
-	    <artifactId>javax.jms-api</artifactId>
-	    <version>2.0.1</version>
 	</dependency>
 	<!-- DataBase Connector -->
 	<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
@@ -149,6 +142,7 @@
 						    <element>PACKAGE</element>
 						    <excludes>
 						      <exclude>*worker</exclude>
+						      <exclude>*program*</exclude>
 						    </excludes>
 						    <limits>
 						      <limit>
@@ -162,6 +156,7 @@
 						    <element>CLASS</element>
 						    <excludes>
 						      <exclude>*Test</exclude>
+						      <exclude>*App</exclude>
 						      <exclude>*MariaDbWriter</exclude>
 						    </excludes>
 						    <limits>
@@ -252,7 +247,7 @@
 	                <!-- MainClass in mainfest make a executable jar -->
 					<archive>
 					  <manifest>
-						<mainClass>microtope.worker.App</mainClass>
+						<mainClass>microtope.program.App</mainClass>
 					  </manifest>
 					</archive>
 	            </configuration>
@@ -276,7 +271,7 @@
 			        <archive>
 			          <manifest>
 			            <addClasspath>true</addClasspath>
-			            <mainClass>microtope.worker.App</mainClass>
+			            <mainClass>microtope.program.App</mainClass>
 			          </manifest>
 			        </archive>
 			      </configuration>

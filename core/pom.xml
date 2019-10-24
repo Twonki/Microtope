@@ -1,62 +1,60 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>git.twonki.microtope</groupId>
-  <artifactId>pulser</artifactId>
-  <version>0.1.0</version>
+  <artifactId>core</artifactId>
+  <version>0.1.1</version>
+  <name>core-library</name>
+  <description>shared libraries and classes for the microtope java parts	</description>
   <packaging>jar</packaging>
-   
-  <description>A simple project which makes (and sends) messages to ActiveMQ</description>
+
   <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>12</maven.compiler.source>
         <maven.compiler.target>12</maven.compiler.target>
   </properties>
-  
-  <name>sender</name>
+  <distributionManagement>
+   <repository>
+     <id>github</id>
+     <name>GitHub Twonki Apache Maven Packages</name>
+     <url>https://maven.pkg.github.com/Twonki/microtope</url>
+   </repository>
+</distributionManagement>
 
-  <dependencies>
-  
-  	<!-- ActiveMQ Related -->
-		<dependency>
-		  <groupId>org.apache.activemq</groupId>
-		  <artifactId>activemq-all</artifactId>
-		  <version>5.15.10</version>
+<dependencies>
+  	<!-- Logging -->
+     <dependency>
+	        <groupId>org.apache.logging.log4j</groupId>
+	        <artifactId>log4j-api</artifactId>
+	        <version>2.12.1</version>
+	      </dependency>
+	      <dependency>
+	        <groupId>org.apache.logging.log4j</groupId>
+	        <artifactId>log4j-core</artifactId>
+	        <version>2.12.1</version>
+	      </dependency>
+      <!-- Unit Tests JUnit -->
+		 <dependency>
+	        <groupId>org.junit.jupiter</groupId>
+	        <artifactId>junit-jupiter-api</artifactId>
+	        <version>5.5.2</version>
+	        <scope>test</scope>
+	    </dependency>
+	    <dependency>
+	    <groupId>org.junit.jupiter</groupId>
+		    <artifactId>junit-jupiter-params</artifactId>
+		    <version>5.5.2</version>
+		    <scope>test</scope>
 		</dependency>
-  		<!-- Logging -->
-	     <dependency>
-		        <groupId>org.apache.logging.log4j</groupId>
-		        <artifactId>log4j-api</artifactId>
-		        <version>2.12.1</version>
-		      </dependency>
-		      <dependency>
-		        <groupId>org.apache.logging.log4j</groupId>
-		        <artifactId>log4j-core</artifactId>
-		        <version>2.12.1</version>
-		      </dependency>
-	      <!-- Unit Tests JUnit -->
-			 <dependency>
-		        <groupId>org.junit.jupiter</groupId>
-		        <artifactId>junit-jupiter-api</artifactId>
-		        <version>5.5.2</version>
-		        <scope>test</scope>
-		    </dependency>
-		    <dependency>
-		    <groupId>org.junit.jupiter</groupId>
-			    <artifactId>junit-jupiter-params</artifactId>
-			    <version>5.5.2</version>
-			    <scope>test</scope>
-			</dependency>
-		    <dependency>
-		        <groupId>org.junit.jupiter</groupId>
-		        <artifactId>junit-jupiter-engine</artifactId>
-		        <version>5.5.2</version>
-		        <scope>test</scope>
-		    </dependency>
-	  </dependencies>
-	   
-	  <build>
+	    <dependency>
+	        <groupId>org.junit.jupiter</groupId>
+	        <artifactId>junit-jupiter-engine</artifactId>
+	        <version>5.5.2</version>
+	        <scope>test</scope>
+	    </dependency>
+  </dependencies>
+   
+   
+   <build>
 		  <plugins>
 		  		<plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -170,16 +168,11 @@
 						        <minimum>75%</minimum>
 						      </limit>
 						    </limits>
-						    <excludes>
-						      <exclude>*program*</exclude>
-						      <exclude>*App</exclude>
-						    </excludes>
 						  </rule>
 						  <rule>
 						    <element>CLASS</element>
 						    <excludes>
 						      <exclude>*Test</exclude>
-						      <exclude>*App</exclude>
 						    </excludes>
 						    <limits>
 						      <limit>
@@ -218,55 +211,15 @@
 	        </executions>
      	 </plugin>
      	 	       		
-	            <plugin>
-	                <groupId>org.apache.maven.plugins</groupId>
-	                <artifactId>maven-compiler-plugin</artifactId>
-	                <version>3.8.1</version>
-	                <configuration>
-	                    <release>12</release>
-	                </configuration>
-	            </plugin>
-	            <plugin>
-	            <groupId>org.apache.maven.plugins</groupId>
-	            <artifactId>maven-assembly-plugin</artifactId>
-	            <version>3.1.1</version>
-	            <configuration>
-	                <descriptorRefs>
-	                    <descriptorRef>jar-with-dependencies</descriptorRef>
-	                </descriptorRefs>
-	                <!-- MainClass in mainfest make a executable jar -->
-					<archive>
-					  <manifest>
-						<mainClass>microtope.program.App</mainClass>
-					  </manifest>
-					</archive>
-	            </configuration>
-	            <executions>
-	                <execution>
-	                    <id>assemble-all</id>
-	                    <phase>package</phase>
-	                    <goals>
-	                        <goal>single</goal>
-	                    </goals>
-	                </execution>
-	            </executions>
-	        </plugin>
-		            
-	            <plugin>
-			      <!-- Build an executable JAR -->
-			      <groupId>org.apache.maven.plugins</groupId>
-			      <artifactId>maven-jar-plugin</artifactId>
-			      <version>3.1.2</version>
-			      <configuration>
-			        <archive>
-			          <manifest>
-			            <addClasspath>true</addClasspath>
-			            <mainClass>microtope.program.App</mainClass>
-			          </manifest>
-			        </archive>
-			      </configuration>
-			    </plugin>
-			    
+           <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-compiler-plugin</artifactId>
+               <version>3.8.1</version>
+               <configuration>
+                   <release>12</release>
+               </configuration>
+           </plugin>
+           
     	<plugin>
 		  <groupId>com.github.spotbugs</groupId>
 		  <artifactId>spotbugs-maven-plugin</artifactId>
@@ -318,5 +271,6 @@
 
       </plugins>
     </reporting>
-  
+   
+
 </project>

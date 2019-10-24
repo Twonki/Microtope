@@ -35,7 +35,7 @@ public class MariaDbWriter implements Closeable, DatabaseWriter {
 		healthcheck();
 	}
 	
-	protected Connection buildConnectionFromConfig() throws SQLException {
+	public Connection buildConnectionFromConfig() throws SQLException {
 		var url = String.format("jdbc:mysql://%s:%s/%s",sqlconf.addressToConnect,sqlconf.portToConnect,sqlconf.databaseToConnect);
 	    logger.debug("Trying to connect to " + url + " as " + sqlconf.userToConnect + " with Password [REDACTED]");
 	    var con =  DriverManager.getConnection(url, sqlconf.userToConnect, sqlconf.passwordToConnect);
