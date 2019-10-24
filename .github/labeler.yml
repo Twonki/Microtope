@@ -9,16 +9,20 @@ Typescript:
 - ./.github/workflows/buildAPI.yml
 
 Java:
+- core/src/*
+- core/pom.xml
 - pulser/src/*
 - pulser/pom.xml
 - worker/src/*
 - worker/pom.xml
 - ./.github/workflows/buildPulser.yml
 - ./.github/workflows/buildWorker.yml
+- ./.github/workflows/buildCore.yml
 
 Test:
 - pulser/src/test/*
 - worker/src/test/*
+- core/src/test/*
 - api/test/*
 - ui/src/**/*.spec.ts
 
@@ -46,6 +50,7 @@ Configuration:
 - meta/**/*.json
 - worker/pom.xml
 - pulser/pom.xml
+- core/pom.xml
 - ./**/*.yml
 - ./**/*.yaml
 - ./**/*.json
