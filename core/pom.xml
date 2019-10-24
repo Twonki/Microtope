@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>git.twonki.microtope</groupId>
   <artifactId>core</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
   <name>core-library</name>
   <description>shared libraries and classes for the microtope java parts	</description>
   <packaging>jar</packaging>
@@ -12,21 +12,6 @@
         <maven.compiler.source>12</maven.compiler.source>
         <maven.compiler.target>12</maven.compiler.target>
   </properties>
-  
-  <repositories>
-        <repository>
-          <id>central</id>
-          <url>https://repo1.maven.org/maven2</url>
-          <releases><enabled>true</enabled></releases>
-          <snapshots><enabled>true</enabled></snapshots>
-        </repository>
-        <repository>
-          <id>github</id>
-          <name>GitHub Twonki Apache Maven Packages</name>
-          <url>https://maven.pkg.github.com/OWNER</url>
-        </repository>
-      </repositories>
-        
   <distributionManagement>
    <repository>
      <id>github</id>
