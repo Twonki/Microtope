@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk-alpine:12.0.2
+FROM azul/zulu-openjdk-alpine:13.0.1
 
 ENV dir /usr/app
 ENV ActiveMQ_Adress 127.0.0.1
