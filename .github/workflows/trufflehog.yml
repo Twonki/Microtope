@@ -29,10 +29,6 @@ jobs:
 
         pip install trufflehog
         
-        echo '::debug load common regexes'
-
-        wget -O regex.json https://raw.githubusercontent.com/dxa4481/truffleHogRegexes/master/truffleHogRegexes/regexes.json
-        
         echo '::debug run trufflehog'
 
-        trufflehog --regex regex.json --entropy=False https://github.com/Twonki/Microtope.git
+        trufflehog --regex --entropy=False https://github.com/Twonki/Microtope.git
