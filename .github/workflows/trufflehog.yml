@@ -29,4 +29,4 @@ jobs:
         
         echo 'run trufflehog'
 
-        trufflehog --regex --entropy=False https://Twonki:${TRUFFLEHOG_TOKEN}@github.com/Twonki/Microtope.git
+        trufflehog --regex --entropy=False --exclude-paths=".github/*" https://Twonki:${TRUFFLEHOG_TOKEN}@github.com/Twonki/Microtope.git
