@@ -31,4 +31,4 @@ jobs:
         
         echo '::debug run trufflehog'
 
-        echo "::debug `trufflehog --regex --entropy=False https://github.com/Twonki/Microtope.git`"
+        echo "::debug `trufflehog --regex --entropy=False https://Twonki:${TRUFFLEHOG_TOKEN}@github.com/Twonki/Microtope.git`"
