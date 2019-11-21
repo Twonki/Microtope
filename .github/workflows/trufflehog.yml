@@ -11,7 +11,7 @@ name: Credentials Check
 jobs:
   build:
 
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v1
@@ -31,4 +31,4 @@ jobs:
         
         echo '::debug run trufflehog'
 
-        trufflehog --regex regex.json --entropy=False
+        trufflehog --regex regex.json --entropy=False file:///Users/runner/runners/2.160.2/work/Microtope/Microtope/
