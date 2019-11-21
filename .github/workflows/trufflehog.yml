@@ -31,4 +31,4 @@ jobs:
         
         echo '::debug run trufflehog'
 
-        trufflehog --regex regex.json --entropy=False file://./
+        trufflehog --regex regex.json --entropy=False
