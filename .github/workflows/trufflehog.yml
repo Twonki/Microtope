@@ -1,0 +1,34 @@
+on:
+  push:
+    branches: 
+        - master
+        - dev
+  schedule:
+  - cron: "0 0 * * *"
+
+name: Credentials Check
+
+jobs:
+  build:
+
+    runs-on: macOS-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.6'
+    - name: Security Check with TruffleHog
+      run: |
+        echo '::debug install trufflehog'
+
+        pip install trufflehog
+        
+        echo '::debug load common regexes'
+
+        wget -O regex.json https://raw.githubusercontent.com/dxa4481/truffleHogRegexes/master/truffleHogRegexes/regexes.json
+        
+        echo '::debug run trufflehog'
+
+        trufflehog --regex regex.json --entropy=False https://github.com/Twonki/Microtope.git
