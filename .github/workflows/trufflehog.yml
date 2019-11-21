@@ -25,10 +25,8 @@ jobs:
         python-version: '3.6'
     - name: Security Check with TruffleHog
       run: |
-        echo '::debug install trufflehog'
-
         pip install trufflehog
         
-        echo '::debug run trufflehog'
+        echo 'run trufflehog'
 
-        echo "::debug `trufflehog --regex --entropy=False https://Twonki:${TRUFFLEHOG_TOKEN}@github.com/Twonki/Microtope.git`"
+        trufflehog --regex --entropy=False https://Twonki:${TRUFFLEHOG_TOKEN}@github.com/Twonki/Microtope.git
