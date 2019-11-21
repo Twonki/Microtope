@@ -1,8 +1,12 @@
 on:
   push:
     branches: 
-        - master
-        - dev
+      - master
+      - dev
+  pull-request:
+    branches:
+      - master
+      - dev
   schedule:
   - cron: "0 0 * * *"
 
