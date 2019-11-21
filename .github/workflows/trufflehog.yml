@@ -31,4 +31,4 @@ jobs:
         
         echo '::debug run trufflehog'
 
-        trufflehog --regex regex.json --entropy=False https://github.com/Twonki/Microtope.git
+        trufflehog --regex regex.json --entropy=False .
