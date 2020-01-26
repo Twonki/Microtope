@@ -1,7 +1,6 @@
 package microtope.worker;
 
 import java.sql.SQLException;
-
 import microtope.messages.CoinMessage;
 import microtope.messages.LoginMessage;
 import microtope.messages.LogoutMessage;

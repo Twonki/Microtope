@@ -2,18 +2,14 @@ package microtope.pulser;
 
 import java.io.Closeable;
 import java.io.IOException;
-
 import javax.jms.Connection;
 import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
-
 import microtope.config.ActiveMqConfiguration;
-
 import org.apache.activemq.ActiveMQConnectionFactory;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
