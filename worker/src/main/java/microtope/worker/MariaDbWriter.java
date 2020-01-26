@@ -47,16 +47,20 @@ public class MariaDbWriter implements Closeable, DatabaseWriter {
 			PreparedStatement stmt = con.prepareStatement("SELECT status from health;");
 			
 			logger.debug("executing prepared statement for healthcheck...");
-		    ResultSet rs = stmt.executeQuery();
-		    logger.debug("recieved resultset ... recieved:");
-		    
-		    while (rs.next()) {  
-		    	logger.info(rs.getString("status"));  
+		    try (ResultSet rs = stmt.executeQuery()) {
+			    logger.debug("recieved resultset ... recieved:");
+			    
+			    while (rs.next()) {  
+			    	logger.info(rs.getString("status"));  
+			    }
+			    logger.info("healthcheck passed!");
+			    rs.close();
+		    } catch (Exception e) {
+		    	logger.error("Healthcheck failed due to",e);
+		    } finally {
+		    	stmt.close();
 		    }
-		    logger.info("healthcheck passed!");
 		    
-		    rs.close();
-		    stmt.close();
 		}
 	}
 
@@ -87,9 +91,10 @@ public class MariaDbWriter implements Closeable, DatabaseWriter {
 
 	@Override
 	public void writeLogout(LogoutMessage msg) {
+		PreparedStatement stmt = null;
 		try {
 			if (isOpenAndReady()) {
-				PreparedStatement stmt = con.prepareStatement("INSERT INTO audits (player_id, action, recorded) VALUES (? ,'logout', ?);");
+				stmt = con.prepareStatement("INSERT INTO audits (player_id, action, recorded) VALUES (? ,'logout', ?);");
 				
 				stmt.setInt(1, msg.getPlayerId());
 				stmt.setTimestamp(2, convertUtilToSql(msg.getTimeStamp()));
@@ -105,6 +110,14 @@ public class MariaDbWriter implements Closeable, DatabaseWriter {
 			}
 		} catch (SQLException e) {
 			logger.error(e);
+		} finally {
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					logger.error(e);
+				}
+			}
 		}
 	}
 	
