@@ -2,11 +2,9 @@ package microtope.messages;
 
 import java.util.Date;
 import java.util.regex.Pattern;
-
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.TextMessage;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

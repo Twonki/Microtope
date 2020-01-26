@@ -2,7 +2,6 @@ package microtope.worker;
 
 import javax.jms.Message;
 import javax.jms.MessageListener;
-
 import microtope.messages.AmqMessage;
 import microtope.messages.AmqMessageParser;
 import microtope.messages.BadMessage;
@@ -10,7 +9,6 @@ import microtope.messages.CoinMessage;
 import microtope.messages.LoginMessage;
 import microtope.messages.LogoutMessage;
 import microtope.messages.StepMessage;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

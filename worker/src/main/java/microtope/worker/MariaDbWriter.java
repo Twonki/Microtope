@@ -7,13 +7,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import microtope.config.SqlConfig;
 import microtope.messages.CoinMessage;
 import microtope.messages.LoginMessage;
 import microtope.messages.LogoutMessage;
 import microtope.messages.StepMessage;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
