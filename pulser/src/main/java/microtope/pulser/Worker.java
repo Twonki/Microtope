@@ -1,11 +1,9 @@
 package microtope.pulser;
 
 import javax.jms.JMSException;
-
 import microtope.data.DataGenerator;
 import microtope.data.MessageGenerator;
 import microtope.data.Team;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
