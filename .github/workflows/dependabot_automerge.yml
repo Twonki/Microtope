@@ -6,20 +6,21 @@ on:
       - completed
   pull_request:
     types:
-      - labeled
-      - unlabeled
-      - synchronize
-      - opened
       - edited
+      - labeled
+      - opened
       - ready_for_review
       - reopened
+      - synchronize
+      - unlabeled
       - unlocked
 
 jobs:
-  auto-merge:
+  merge-me:
+    name: Dependabot merge
     runs-on: ubuntu-latest
     steps:
-      - name: auto-merge
-        uses: ridedott/dependabot-auto-merge-action@master
+      - name: Dependabot merge
+        uses: ridedott/merge-me-action@master
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
