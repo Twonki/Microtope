@@ -22,7 +22,6 @@ public class DatabaseInsertListener implements MessageListener {
 		if (writer == null) {
 			throw new IllegalArgumentException("Writer cannot be null!");	
 		}
-		
 		this.writer = writer;
 	}
 	

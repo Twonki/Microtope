@@ -2,15 +2,15 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>git.twonki.microtope</groupId>
   <artifactId>core</artifactId>
-  <version>0.1.1</version>
+  <version>0.1.2</version>
   <name>core-library</name>
   <description>shared libraries and classes for the microtope java parts	</description>
   <packaging>jar</packaging>
 
   <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>12</maven.compiler.source>
-        <maven.compiler.target>12</maven.compiler.target>
+        <maven.compiler.source>13</maven.compiler.source>
+        <maven.compiler.target>13</maven.compiler.target>
   </properties>
   <distributionManagement>
    <repository>
@@ -21,7 +21,13 @@
 </distributionManagement>
 
 <dependencies>
-  	<!-- Logging -->
+  	<!-- ActiveMQ Related -->
+	<dependency>
+	  <groupId>org.apache.activemq</groupId>
+	  <artifactId>activemq-all</artifactId>
+	  <version>5.15.12</version>
+	</dependency>
+	
      <dependency>
 	        <groupId>org.apache.logging.log4j</groupId>
 	        <artifactId>log4j-api</artifactId>
