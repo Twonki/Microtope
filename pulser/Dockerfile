@@ -11,7 +11,7 @@ RUN apk update && apk add bash
 
 RUN mkdir -p $dir
 
-COPY ./target/pulser-0.1.0-jar-with-dependencies.jar $dir
+COPY ./target/pulser-0.2.0-jar-with-dependencies.jar $dir
 
 COPY ./utils/wait-for-it.sh $dir
 
