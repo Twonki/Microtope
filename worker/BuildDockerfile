@@ -3,6 +3,12 @@
 
 FROM maven:3.6.1-jdk-12 as builder
 
+# Build the dependencies
+
+WORKDIR /dependencies 
+COPY ./Core . 
+Run mvn install package verify
+
 WORKDIR /app
 
 # Copy project files to the docker image

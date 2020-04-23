@@ -4,7 +4,7 @@
 
   <groupId>git.twonki.microtope</groupId>
   <artifactId>worker</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
   <packaging>jar</packaging>
    
   <description>Long Running Service. Takes Messages from an ActiveMQ and puts it into a database</description>
@@ -17,6 +17,13 @@
   <name>worker</name>
 
   <dependencies>
+  	<dependency>
+  	<!-- This is my own dependency in the nearby folder --> 
+  		<groupId>git.twonki.microtope</groupId>
+		 <artifactId>core</artifactId>
+		 <version>0.1.2</version>
+  	</dependency>
+  
   	<!-- ActiveMQ Related -->
 		<dependency>
 	  <groupId>org.apache.activemq</groupId>
@@ -124,12 +131,12 @@
 						      <limit>
 						        <counter>LINE</counter>
 						        <value>COVEREDRATIO</value>
-						        <minimum>70%</minimum>
+						        <minimum>40%</minimum>
 						      </limit>
 							      <limit>
 							        <counter>INSTRUCTION</counter>
 							        <value>COVEREDRATIO</value>
-							        <minimum>0.65</minimum>
+							        <minimum>0.40</minimum>
 							      </limit>
 						       <limit>
 						        <counter>CLASS</counter>
@@ -163,12 +170,12 @@
 						      <limit>
 						        <counter>LINE</counter>
 						        <value>COVEREDRATIO</value>
-						        <minimum>50%</minimum>
+						        <minimum>40%</minimum>
 						      </limit>
 						        <limit>
 						        <counter>INSTRUCTION</counter>
 						        <value>COVEREDRATIO</value>
-						        <minimum>60%</minimum>
+						        <minimum>40%</minimum>
 						      </limit>
 						    </limits>
 						  </rule>
@@ -325,8 +332,6 @@
 		  <artifactId>spotbugs-maven-plugin</artifactId>
 		  <version>4.0.0</version>
 		</plugin>    
-		        
-        
       </plugins>
     </reporting>
 </project>

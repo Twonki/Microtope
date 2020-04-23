@@ -4,7 +4,7 @@
 
   <groupId>git.twonki.microtope</groupId>
   <artifactId>pulser</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
   <packaging>jar</packaging>
    
   <description>A simple project which makes (and sends) messages to ActiveMQ</description>
@@ -17,6 +17,12 @@
   <name>sender</name>
 
   <dependencies>
+    	<dependency>
+	 	<!-- This is my own dependency in the nearby folder --> 
+	 		<groupId>git.twonki.microtope</groupId>
+		    <artifactId>core</artifactId>
+		    <version>0.1.2</version>
+	 	</dependency>
   
   	<!-- ActiveMQ Related -->
 		<dependency>

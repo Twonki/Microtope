@@ -33,14 +33,14 @@ public class App {
         	
             logger.info("args[] are ok, starting worker ...");
 
-            ActiveMqMessageReciever reciever = new ActiveMqMessageReciever(amqconf);
-			reciever.open(reciever.createConnectionFromConfig());
+            ActiveMqMessageReciever receiver = new ActiveMqMessageReciever(amqconf);
+			receiver.open(receiver.createConnectionFromConfig());
             
             var mariadbwriter = new MariaDbWriter(sqlconf);
             mariadbwriter.open(mariadbwriter.buildConnectionFromConfig());
             var listener = new DatabaseInsertListener(mariadbwriter);
             
-            reciever.registerMessageListener(listener);
+            receiver.registerMessageListener(listener);
         }
     }
 
