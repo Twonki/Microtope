@@ -1,0 +1,38 @@
+cabal-version:       3.0
+name:                Wesir
+version:             0.0.1.0
+synopsis:            Program to check MicroTope Database validity
+
+bug-reports:         https://github.com/Twonki/MicroTope/issues
+license:             MIT
+author:              Leonhard Applis
+maintainer:          Leonhard.Applis@Protonmail.com
+category:            executable
+extra-source-files:  README.md
+
+common deps
+  build-depends:  base                  >= 4.13.0 && < 4.14,
+                  text                  >= 1.2.4 && < 1.3,
+  ghc-options:
+    -O2
+  default-language:    Haskell2010
+
+
+common test-deps
+  build-depends:       test-framework-quickcheck2,
+                       test-framework,
+                       test-framework-hunit,
+                       HUnit,
+                       QuickCheck
+
+
+executable Wesir
+  import: deps
+  main-is:            Program.hs
+  ghc-options:
+    -rtsopts
+  -- remove eventlog from production builds
+  --  -eventlog
+  build-depends:       optparse-applicative == 0.15.1.0
+  hs-source-dirs:      Src
+  build-depends:       time
