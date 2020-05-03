@@ -31,6 +31,7 @@ common test-deps
 executable Wesir
   import: deps
   main-is:            Program.hs
+  other-modules:      CommandLine
   ghc-options:
     -rtsopts
   -- remove eventlog from production builds
