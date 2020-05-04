@@ -10,7 +10,12 @@ import Data.Semigroup ((<>))
 
 import CommandLine(opts,Arguments(..),ConnectionString,ConnectionProperties,printArgs) 
 
+import Database.HDBC.ODBC
+import Database.HDBC
+
 main :: IO ()
 main = do 
     args <- execParser opts
     printArgs args
+    conn <- connectODBC "DRIVER={MariaDB ODBC 3.1 Driver}"
+    print "kek"

@@ -12,6 +12,23 @@ Install ODBC first with
 sudo apt-get install unixodbc unixodbc-dev unixodbc-bin
 ```
 
+In addition, you need to [install mariadb-odbc](https://mariadb.com/kb/en/about-mariadb-connector-odbc/),
+with (on Ubuntu/Debian):
+
+```shell
+mkdir odbc_package
+cd odbc_package
+wget https://downloads.mariadb.com/Connectors/odbc/connector-odbc-3.1.7/mariadb-connector-odbc-3.1.7-ga-debian-x86_64.tar.gz
+tar -xvzf mariadb-connector-odbc-3.1.7-ga-debian-x86_64.tar.gz
+sudo install lib/libmaodbc.so /usr/lib/
+```
+
+Then you have to set the odbc driver with (In this directory):
+
+`sudo odbcinst -i -d -f Resources/MariaDB_odbc_driver_template.ini`
+
+and verify that it shows up with `odbcinst -q -d`
+
 To manually build on your machine, run in this repository:
 
 ```shell
@@ -33,3 +50,10 @@ To run manually, one needs
 - GHC >8.10
 - Cabal > 3
 - LinuxODBC (see above)
+
+
+## Troubleshooting
+
+To run the image and check things in it, without it shutting down, run:
+
+`sudo docker run -it --entrypoint /bin/bash wesir`
