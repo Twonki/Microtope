@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+  db:
+    image: microtope/database
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      TZ: "Europe/Berlin"
+
+  
+  wesir:
+    image: microtope/wesir
+    environment:
+      MariaDB_Adress: db
+      MariaDB_Port: 3306
+      MariaDB_User: auditor
+      MariaDB_PW: ARGU5
+    # make sure that exposedPort is listed here!
+    depends_on: 
+      - db

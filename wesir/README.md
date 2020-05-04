@@ -38,7 +38,14 @@ cabal new-install
 To build the docker run:
 
 ```shell
-docker build . -t wesir
+docker build . -t microtope/wesir
+```
+
+To have an total overview of whats going on, use the compose file in resources:
+(But make sure to build both docker images first)
+
+```shell
+sudo docker-compose -f Resources/micro-compose.yml up
 ```
 
 ## Requirements
