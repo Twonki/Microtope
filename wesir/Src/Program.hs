@@ -18,10 +18,16 @@ main = do
     args <- execParser opts
     printArgs args
     conn <- getConnection args
+
+    results <- quickQuery conn "SELECT * FROM health;" []
+
+    putStrLn "Service Health: \n \n"
+    print results
+
     putStrLn "\n\nbye, have a great time!"
 
 getConnection :: Arguments -> IO Connection
 getConnection (ArgumentsConnectionString c v) = connectODBC (Txt.unpack c)
-getConnection (ArgumentsConnectionProps (Connection h p u pw) v) = 
-    let cs = "DRIVER={MariaDB};SERVER="++h++";PORT="++p++";USER="++u++";PASSWORD="++pw
+getConnection (ArgumentsConnectionProps (Connection h p u pw d) v) = 
+    let cs = "DRIVER={MariaDB};SERVER="++h++";PORT="++p++";USER="++u++";PASSWORD="++pw++";DATABASE="++d
     in connectODBC cs 

@@ -26,6 +26,7 @@ data ConnectionProperties = Connection {
   , port :: String  
   , user :: String
   , password :: String
+  , database :: String
 }
 
 data Arguments = 
@@ -69,6 +70,12 @@ connectionPropsInput = ArgumentsConnectionProps <$>
             <> help "The password to use to connect to the database"
             <> value "ARGU5"
             <> metavar "STRING" )
+        <*> strOption
+            ( long "database"
+            <> short 'd'
+            <> help "the database in the db server to connect to"
+            <> value "microtope"
+            <> metavar "STRING" )
     )
     <*> switch
         ( long "verbose"
@@ -90,9 +97,9 @@ connectionStringInput = ArgumentsConnectionString
 
 printArgs :: Arguments -> IO ()
 printArgs (ArgumentsConnectionString constr v) = 
-    printTimestamp "Hello from ConnectionString"
-printArgs (ArgumentsConnectionProps (Connection h p u pw) v) = 
-    printTimestamp "Hello from ConnectionProps"
+    printTimestamp "Using ConnectionString"
+printArgs (ArgumentsConnectionProps (Connection h p u pw d) v) = 
+    printTimestamp "Using ConnectionProps"
 
 
 -- Little Helper to print statements such as "Connection done at 13:15"
