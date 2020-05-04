@@ -17,5 +17,5 @@ main :: IO ()
 main = do 
     args <- execParser opts
     printArgs args
-    conn <- connectODBC "DRIVER={MariaDB ODBC 3.1 Driver}"
+    conn <- connectODBC "DRIVER={MariaDB}"
     print "kek"

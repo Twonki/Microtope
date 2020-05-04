@@ -51,9 +51,14 @@ To run manually, one needs
 - Cabal > 3
 - LinuxODBC (see above)
 
-
 ## Troubleshooting
 
 To run the image and check things in it, without it shutting down, run:
 
 `sudo docker run -it --entrypoint /bin/bash wesir`
+
+**Issues with libmaodbc.so:**
+
+I faced some issues using the mariadb connector inside the docker image.
+Reason for this is likely a version missmatch of debian, libssl, odbc and mariadbodbc (I have not exactly figured out which one is the bad guy).
+I solved it using the 2.0.19 version of mariadbodbc as seen in the [Dockerfile](Dockerfile).
