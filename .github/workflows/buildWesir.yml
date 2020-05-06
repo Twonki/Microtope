@@ -20,9 +20,9 @@ jobs:
     - name: Update Cabal and change directory
       run: |
         cabal update
-        cd ./wesir
     - name: Build
       run: |
+        cd ./wesir
         cabal configure --enable-tests
         cabal build
     - name: Run tests
