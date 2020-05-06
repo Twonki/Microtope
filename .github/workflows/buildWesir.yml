@@ -19,13 +19,13 @@ jobs:
         cabal-version: '3.0'
     - name: Update Cabal
       run: |
-        ./wesir/cabal update
+        cabal update
     - name: Build
       run: |
-        ./wesir/cabal configure --enable-tests
-        ./wesir/cabal build
+        cabal configure --enable-tests ./wesir/Wesir.cabal
+        cabal build ./wesir/Wesir.cabal
     - name: Run tests
-      run: ./wesir/cabal test
+      run: cabal test ./wesir/Wesir.cabal
   
   docker_build:
     runs-on: ubuntu-latest
