@@ -17,13 +17,14 @@ jobs:
       with:
         ghc-version: '8.6.5'
         cabal-version: '3.0'
-    - name: Update Cabal
+    - name: Update Cabal and change directory
       run: |
         cabal update
+        cd ./wesir
     - name: Build
       run: |
-        cabal configure --enable-tests ./wesir/Wesir.cabal
-        cabal build ./wesir/Wesir.cabal
+        cabal configure --enable-tests
+        cabal build
     - name: Run tests
       run: cabal test ./wesir/Wesir.cabal
   
