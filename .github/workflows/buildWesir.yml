@@ -1,0 +1,43 @@
+name: Haskell CI - Wesir
+
+on: 
+  pull_request:
+    paths:
+      - 'wesir/*'
+    branches: 
+      - master
+      - dev
+jobs:
+
+  cabal_build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-haskell@v1
+      with:
+        ghc-version: '8.6.5'
+        cabal-version: '3.0'
+    - name: Update Cabal
+      run: |
+        cabal update
+    - name: Build
+      run: |
+        cabal configure --enable-tests
+        cabal build
+    - name: Run tests
+      run: cabal test
+  
+  docker_build:
+    runs-on: ubuntu-latest
+    steps:  
+      - uses: whoan/docker-build-with-cache-action@v1
+        name: Build Worker in Docker
+        with:
+          username: ${{ secrets.DOCKER_GITHUB_USERNAME }}
+          password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
+          image_name: microtope/wesir
+          image_tag: latest
+          registry: docker.pkg.github.com
+          context: ./wesir
+          dockerfile: Dockerfile
+          push_image_and_stages: false 

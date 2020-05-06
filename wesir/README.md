@@ -69,3 +69,16 @@ To run the image and check things in it, without it shutting down, run:
 I faced some issues using the mariadb connector inside the docker image.
 Reason for this is likely a version missmatch of debian, libssl, odbc and mariadbodbc (I have not exactly figured out which one is the bad guy).
 I solved it using the 2.0.19 version of mariadbodbc as seen in the [Dockerfile](Dockerfile).
+
+Running the container periodically, like seen in [the micro-compose](Resources/micro-compose.yml), requires to do a docker stack deploy not a compose.
+To set this up, do:
+
+`docker stack init --advertise-adr 127.0.0.1`
+
+then you can do
+
+`docker stack deploy -c Resources/micro-compose.yml teststack`
+
+clean up with
+
+`docker stack rm teststack`
