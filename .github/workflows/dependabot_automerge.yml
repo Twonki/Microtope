@@ -4,14 +4,6 @@ on:
   check_suite:
     types:
       - completed
-  pull_request:
-    types:
-      - edited
-      - labeled
-      - opened
-      - ready_for_review
-      - reopened
-      - synchronize
 
 jobs:
   merge-me:
