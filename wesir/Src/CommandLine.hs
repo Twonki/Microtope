@@ -96,11 +96,13 @@ connectionStringInput = ArgumentsConnectionString
         <> help "whether to print debug information" )
 
 printArgs :: Arguments -> IO ()
-printArgs (ArgumentsConnectionString constr v) = 
-    printTimestamp "Using ConnectionString"
-printArgs (ArgumentsConnectionProps (Connection h p u pw d) v) = 
-    printTimestamp "Using ConnectionProps"
-
+printArgs (ArgumentsConnectionString constr v) = do
+    printTimestamp "Starting Wesir, using ConnectionString"
+    putStrLn "ConnectionString is not printed as it contains passwords.\n"
+    
+printArgs (ArgumentsConnectionProps (Connection h p u pw d) v) = do
+    printTimestamp ("Starting Wesir, connecting to "++h++":"++p++" as `"++u++"`")
+    putStrLn "\n"
 
 -- Little Helper to print statements such as "Connection done at 13:15"
 printTimestamp :: String -> IO ()
@@ -108,6 +110,5 @@ printTimestamp comment = do
     t <- getCurrentTime
     putStrLn $ comment ++ " at"
     print t
-    return ()
 
 opts = info (args' <**> helper) (fullDesc<> progDesc "TODO: add after-usage-description"<> header "TODO: Add Toplevel description")

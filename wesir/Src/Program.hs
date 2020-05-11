@@ -19,12 +19,15 @@ main = do
     printArgs args
     conn <- getConnection args
 
-    results <- quickQuery conn "SELECT * FROM health;" []
+    ((bs@(_):[]):[]) <- quickQuery conn "SELECT * FROM health;" []
+    let 
+        status :: Txt.Text
+        status = fromSql bs
+    putStrLn ("Database Health: " ++ (Txt.unpack status))
 
-    putStrLn "Service Health: \n \n"
-    print results
+    disconnect conn
 
-    putStrLn "\n\nbye, have a great time!"
+    putStrLn "\nbye, have a great time!"
 
 getConnection :: Arguments -> IO Connection
 getConnection (ArgumentsConnectionString c v) = connectODBC (Txt.unpack c)
