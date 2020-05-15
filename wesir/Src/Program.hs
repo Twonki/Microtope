@@ -9,6 +9,7 @@ import Options.Applicative
 import Data.Semigroup ((<>))
 
 import CommandLine(opts,Arguments(..),ConnectionString,ConnectionProperties(..),printArgs) 
+import Checker
 
 import Database.HDBC.ODBC
 import Database.HDBC
@@ -23,10 +24,12 @@ main = do
     let 
         status :: Txt.Text
         status = fromSql bs
-    putStrLn ("Database Health: " ++ (Txt.unpack status))
+    putStrLn ("Database Health: " ++ (Txt.unpack status)++"\n")
+
+    entries <- quickQuery conn "SELECT * FROM audits WHERE controlled=False" []
+    routine conn entries
 
     disconnect conn
-
     putStrLn "\nbye, have a great time!"
 
 getConnection :: Arguments -> IO Connection
