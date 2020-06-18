@@ -20,12 +20,7 @@ main = do
     printArgs args
     conn <- getConnection args
 
-    ((bs@(_):[]):[]) <- quickQuery conn "SELECT * FROM health;" []
-    let 
-        status :: Txt.Text
-        status = fromSql bs
-    putStrLn ("Database Health: " ++ (Txt.unpack status)++"\n")
-
+    healthcheck conn 
     routine conn
 
     disconnect conn
