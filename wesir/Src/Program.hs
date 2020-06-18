@@ -8,7 +8,7 @@ import Control.Monad(when)
 import Options.Applicative
 import Data.Semigroup ((<>))
 
-import CommandLine(opts,Arguments(..),ConnectionString,ConnectionProperties(..),printArgs) 
+import CommandLine(opts,Arguments(..),ConnectionString,ConnectionProperties(..),printArgs,isVerbose) 
 import Checker
 
 import Database.HDBC.ODBC
@@ -20,8 +20,9 @@ main = do
     printArgs args
     conn <- getConnection args
 
-    healthcheck conn 
-    routine conn
+    when (isVerbose args) (healthcheck conn)
+    
+    routine conn args
 
     disconnect conn
     putStrLn "\nbye, have a great time!"

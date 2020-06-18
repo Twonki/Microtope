@@ -3,7 +3,8 @@ module CommandLine (
     Arguments(..),
     ConnectionString,
     ConnectionProperties(..),
-    printArgs
+    printArgs,
+    isVerbose
 ) where 
 
 import Data.Time 
@@ -132,3 +133,7 @@ printTimestamp comment = do
 -- https://hackage.haskell.org/package/optparse-applicative
 opts :: ParserInfo Arguments
 opts = info (args' <**> helper) (fullDesc<> progDesc "TODO: add after-usage-description"<> header "TODO: Add Toplevel description")
+
+isVerbose :: Arguments -> Bool 
+isVerbose (ArgumentsConnectionString _ v) = v
+isVerbose (ArgumentsConnectionProps _ v) = v

@@ -52,6 +52,7 @@ GRANT INSERT(player_id,recorded,action) ON microtope.audits TO 'worker'@'%';
 
 -- Auditor can read everything and update/write the controlled field to true
 GRANT INSERT,UPDATE (controlled) ON microtope.audits TO 'auditor'@'%';
+GRANT DELETE ON microtope.audits TO 'auditor'@'%';
 GRANT SELECT ON microtope.audits to 'auditor'@'%';
 -- The Auditor cannot Delete Entries
 
