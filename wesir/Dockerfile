@@ -21,6 +21,7 @@ ENV MariaDB_Port 3306
 ENV MariaDB_DatabaseName microtope
 ENV MariaDB_User auditor
 ENV MariaDB_PW ARGU5
+ENV Verbose ""
 
 COPY . .
 
@@ -30,4 +31,4 @@ RUN cabal new-install
 
 # TODO: cabal test
 
-ENTRYPOINT [ "/bin/bash", "-c","./Resources/wait-for-it.sh -t 0 -s --host=$MariaDB_Adress --port=$MariaDB_Port -- Wesir -h ${MariaDB_Adress} -u ${MariaDB_User} --password ${MariaDB_PW} -p ${MariaDB_Port} -d ${MariaDB_DatabaseName}"]
+ENTRYPOINT [ "/bin/bash", "-c","./Resources/wait-for-it.sh -t 0 -s --host=$MariaDB_Adress --port=$MariaDB_Port -- Wesir -h ${MariaDB_Adress} -u ${MariaDB_User} --password ${MariaDB_PW} -p ${MariaDB_Port} -d ${MariaDB_DatabaseName} ${Verbose}"]
