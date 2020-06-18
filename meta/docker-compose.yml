@@ -45,6 +45,7 @@ services:
     networks: 
       - backend
       - transistor
+      - auditing
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: "yes"
       TZ: "Europe/Berlin"
@@ -82,6 +83,24 @@ services:
       - amq
       - db
 
+  wesir:
+    image: microtope/wesir
+    networks:
+      - auditing
+    environment:
+      MariaDB_Adress: db
+      MariaDB_Port: 3306
+      MariaDB_User: auditor
+      MariaDB_PW: ARGU5
+      Verbose: "" #use -v for verbosity, use "" for non-verbosity
+    deploy:
+      restart_policy:
+        condition: any
+        delay: 30s
+        max_attempts: 3
+        window: 60s
+    depends_on: 
+      - db
 
 networks:
   backend:
@@ -91,3 +110,5 @@ networks:
   frontend:
   
   spawn: 
+
+  auditing:
