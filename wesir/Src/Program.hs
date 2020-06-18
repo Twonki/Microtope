@@ -26,8 +26,7 @@ main = do
         status = fromSql bs
     putStrLn ("Database Health: " ++ (Txt.unpack status)++"\n")
 
-    entries <- quickQuery conn "SELECT * FROM audits WHERE controlled=False" []
-    routine conn entries
+    routine conn
 
     disconnect conn
     putStrLn "\nbye, have a great time!"
