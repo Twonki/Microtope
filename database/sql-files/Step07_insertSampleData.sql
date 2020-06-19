@@ -3,7 +3,7 @@ USE `microtope`;
 INSERT INTO players (player_id, team_id)
 VALUES (100001,1), (100002,1), (200001,2);
 
-INSERT INTO steps (player_id,steps, recorded)
+INSERT INTO unchecked_steps (player_id,steps, recorded)
 VALUES 
 (100001,15,"2019-01-01 15:00:00"),
 (100001,10,"2019-01-01 15:05:00"),
@@ -15,7 +15,7 @@ VALUES
 (200001,15,"2019-01-01 15:20:00"),
 (200001,25,"2019-01-01 15:30:00");
 
-INSERT INTO coins (player_id,value,recorded)
+INSERT INTO unchecked_coins (player_id,value,recorded)
 VALUES 
 (100001,1,"2019-01-01 15:03:00"),
 (100001,1,"2019-01-01 15:15:00"),

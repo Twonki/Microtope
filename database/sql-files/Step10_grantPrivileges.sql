@@ -29,10 +29,10 @@ SELECT CONCAT("GRANT SELECT,INSERT,DELETE,UPDATE ON  microtope.", table_name, " 
 FROM information_schema.TABLES
 WHERE table_type="BASE TABLE" AND table_schema = "microtope" AND table_name <> "audits";
 */
-GRANT SELECT,INSERT,DELETE,UPDATE ON  microtope.coins TO 'worker'@'%';                      
+GRANT SELECT,INSERT,DELETE,UPDATE ON  microtope.raw_coins TO 'worker'@'%';                      
 GRANT SELECT,INSERT,DELETE,UPDATE ON  microtope.players TO 'worker'@'%';                    
 GRANT SELECT,INSERT,DELETE,UPDATE ON  microtope.teams TO 'worker'@'%';                 
-GRANT SELECT,INSERT,DELETE,UPDATE ON  microtope.steps TO 'worker'@'%';  
+GRANT SELECT,INSERT,DELETE,UPDATE ON  microtope.raw_steps TO 'worker'@'%';  
 
 
 -- Health Checks

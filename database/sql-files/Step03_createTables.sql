@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS players (
 		ON UPDATE RESTRICT
 )WITH SYSTEM VERSIONING, engine=InnoDB default charset utf8;
 
-CREATE TABLE IF NOT EXISTS steps (
+CREATE TABLE IF NOT EXISTS unchecked_steps (
   `player_id` INT UNSIGNED NOT NULL,
   `steps` INT UNSIGNED  NOT NULL,
   `recorded` DATETIME NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS steps (
     ON DELETE CASCADE
 )WITH SYSTEM VERSIONING, engine=InnoDB default charset utf8;
 
-CREATE TABLE IF NOT EXISTS coins (
+CREATE TABLE IF NOT EXISTS unchecked_coins (
   `player_id` INT UNSIGNED NOT NULL,
   `value` INT UNSIGNED  NOT NULL,
   `recorded` DATETIME NOT NULL,

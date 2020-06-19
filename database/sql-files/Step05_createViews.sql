@@ -8,6 +8,18 @@ WHERE controlled
 AND action = 'login'
 AND closest_logout(player_id,recorded) IS NOT NULL;
 
+CREATE VIEW microtope.steps 
+AS
+SELECT *
+FROM unchecked_steps;
+--TODO: Only for steps in valid sessions
+
+CREATE VIEW microtope.coins 
+AS
+SELECT *
+FROM unchecked_coins;
+--TODO: Only for steps in valid sessions
+
 CREATE VIEW microtope.steps_by_user 
 AS
 SELECT ps.player_id,SUM(steps) AS steps 
