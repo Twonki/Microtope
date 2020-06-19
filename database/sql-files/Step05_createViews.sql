@@ -1,24 +1,17 @@
 Use `microtope`;
+-- The view for valid sessions is done with the validity-functions
 
-CREATE VIEW microtope.valid_sessions 
+CREATE OR REPLACE VIEW microtope.steps 
 AS
-SELECT player_id, recorded, closest_logout(player_id,recorded)
-FROM audits
-WHERE controlled
-AND action = 'login'
-AND closest_logout(player_id,recorded) IS NOT NULL;
+SELECT player_id, steps, recorded
+FROM unchecked_steps
+WHERE is_in_valid_session(player_id,recorded);
 
-CREATE VIEW microtope.steps 
+CREATE OR REPLACE VIEW microtope.coins 
 AS
-SELECT *
-FROM unchecked_steps;
---TODO: Only for steps in valid sessions
-
-CREATE VIEW microtope.coins 
-AS
-SELECT *
-FROM unchecked_coins;
---TODO: Only for steps in valid sessions
+SELECT player_id,value,recorded
+FROM unchecked_coins
+WHERE is_in_valid_session(player_id,recorded);
 
 CREATE VIEW microtope.steps_by_user 
 AS
