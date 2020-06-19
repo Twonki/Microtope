@@ -1,5 +1,13 @@
 Use `microtope`;
 
+CREATE VIEW microtope.valid_sessions 
+AS
+SELECT player_id, recorded, closest_logout(player_id,recorded)
+FROM audits
+WHERE controlled
+AND action = 'login'
+AND closest_logout(player_id,recorded) IS NOT NULL;
+
 CREATE VIEW microtope.steps_by_user 
 AS
 SELECT ps.player_id,SUM(steps) AS steps 

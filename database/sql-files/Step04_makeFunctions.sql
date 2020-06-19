@@ -23,7 +23,7 @@ ORDER BY TIMEDIFF(audits.recorded,'2019-01-01 15:03:00') ASC;
 */
 CREATE OR REPLACE FUNCTION 
 closest_logout (player INT, login_time DATETIME) 
-RETURNS DATETIME 
+RETURNS DATETIME DETERMINISTIC
 RETURN
   (
     SELECT audits.recorded 
