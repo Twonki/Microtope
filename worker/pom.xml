@@ -4,7 +4,7 @@
 
   <groupId>git.twonki.microtope</groupId>
   <artifactId>worker</artifactId>
-  <version>0.2.0</version>
+  <version>0.2.1</version>
   <packaging>jar</packaging>
    
   <description>Long Running Service. Takes Messages from an ActiveMQ and puts it into a database</description>

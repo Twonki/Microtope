@@ -1,0 +1,25 @@
+version: '3.3'
+
+services:
+  db:
+    image: microtope/database
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      TZ: "Europe/Berlin"
+
+  wesir:
+    image: microtope/wesir
+    environment:
+      MariaDB_Adress: db
+      MariaDB_Port: 3306
+      MariaDB_User: auditor
+      MariaDB_PW: ARGU5
+      Verbose: -v
+    deploy:
+      restart_policy:
+        condition: any
+        delay: 30s
+        max_attempts: 3
+        window: 60s
+    depends_on: 
+      - db

@@ -29,10 +29,10 @@ SELECT CONCAT("GRANT SELECT,INSERT,DELETE,UPDATE ON  microtope.", table_name, " 
 FROM information_schema.TABLES
 WHERE table_type="BASE TABLE" AND table_schema = "microtope" AND table_name <> "audits";
 */
-GRANT SELECT,INSERT,DELETE,UPDATE ON  microtope.coins TO 'worker'@'%';                      
+GRANT SELECT,INSERT,DELETE,UPDATE ON  microtope.unchecked_coins TO 'worker'@'%';                      
 GRANT SELECT,INSERT,DELETE,UPDATE ON  microtope.players TO 'worker'@'%';                    
 GRANT SELECT,INSERT,DELETE,UPDATE ON  microtope.teams TO 'worker'@'%';                 
-GRANT SELECT,INSERT,DELETE,UPDATE ON  microtope.steps TO 'worker'@'%';  
+GRANT SELECT,INSERT,DELETE,UPDATE ON  microtope.unchecked_steps TO 'worker'@'%';  
 
 
 -- Health Checks
@@ -52,6 +52,7 @@ GRANT INSERT(player_id,recorded,action) ON microtope.audits TO 'worker'@'%';
 
 -- Auditor can read everything and update/write the controlled field to true
 GRANT INSERT,UPDATE (controlled) ON microtope.audits TO 'auditor'@'%';
+GRANT DELETE ON microtope.audits TO 'auditor'@'%';
 GRANT SELECT ON microtope.audits to 'auditor'@'%';
 -- The Auditor cannot Delete Entries
 

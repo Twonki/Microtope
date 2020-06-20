@@ -80,3 +80,18 @@ jobs:
         cache: true
         workdir: ./api
         dockerfile: Dockerfile
+
+  PublishWesirToGithub:
+    runs-on: ubuntu-latest
+    steps:  
+      - uses: whoan/docker-build-with-cache-action@v1
+      - name: Build Worker in Docker
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: docker.pkg.github.com/twonki/microtope/wesir
+          username: ${{ secrets.DOCKER_GITHUB_USERNAME }}
+          password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          cache: true
+          workdir: ./wesir
+          dockerfile: Dockerfile

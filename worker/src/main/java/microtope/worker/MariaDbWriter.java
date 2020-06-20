@@ -126,7 +126,7 @@ public class MariaDbWriter implements Closeable, DatabaseWriter {
 		PreparedStatement stmt;
 		try {
 			if (isOpenAndReady()) {
-				stmt  = con.prepareStatement("INSERT INTO steps (player_id, steps, recorded) VALUES (? , ?, ?);");
+				stmt  = con.prepareStatement("INSERT INTO unchecked_steps (player_id, steps, recorded) VALUES (? , ?, ?);");
 				
 				stmt.setInt(1, msg.getPlayerId());
 				stmt.setInt(2, msg.getSteps());
@@ -175,7 +175,7 @@ public class MariaDbWriter implements Closeable, DatabaseWriter {
 	public void writeCoins(CoinMessage msg) {
 		try {
 			if (isOpenAndReady()) {
-				PreparedStatement stmt = con.prepareStatement("INSERT INTO coins (player_id, value, recorded) VALUES (? , ?, ?);");
+				PreparedStatement stmt = con.prepareStatement("INSERT INTO unchecked_coins (player_id, value, recorded) VALUES (? , ?, ?);");
 				
 				stmt.setInt(1, msg.getPlayerId());
 				stmt.setInt(2, msg.getCoins());
