@@ -2,7 +2,8 @@
 
 This is the library shared amongst the java parts. 
 
-The primary use is to reduce code-repetition and have a high-tested lib with shared api´s. With this Bib, changes should be faster doable as they don´t need to be doubled. 
+The primary use is to reduce code-repetition and have a high-tested lib with shared interfaces. 
+With this Bib, changes should be faster doable as they don´t need to be doubled. 
 
 The secondary use is to see and play how the maven package will fit into the CI/CD-pipeline. 
 Especially things as 2 step builds and pipeline-triggers are the focus of this. 
@@ -34,7 +35,8 @@ You must setup your settings similiar to above, but a read:package right is enou
 As far as I understand, you need to have a github account in the package beta to access the packages. 
 
 The account also needs to have read package rights. As soon as possible I want to publish "true" public, but git has not yet told me how. 
-I dont want to provide a read-only token from my account as this is against the beta rules. 
+I dont want to provide a read-only token from my account as this is against the rules :( 
+But I am german so I obey the rules.  
 
 
 ## Troubleshooting

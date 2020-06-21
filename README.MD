@@ -13,11 +13,12 @@ The Application currently is quite stringend:
 1. A Java Application creates messages and puts it into an ActiveMQ-Artemis
 2. An ActiveMQ Image is hosted
 3. Another Java Application Reads messages from an ActiveMQ-Artemis and inserts them into an Mariadb
-4. The Mariadb holds data and checks for integrity
-5. An API is able to read the mariadb on demand and extract data as JSON-Documents
-6. An UI is able to display and interact with the data granted from the API
+4. The Mariadb holds data and checks for (most of the) integrity
+5. *Wesir* iterates of the Logins and Logouts in MariaDB and deletes anomalies, and verifies good entries
+6. An API is able to read the mariadb on demand and extract data as JSON-Documents
+7. An UI is able to display and interact with the data granted from the API
 
-A simple image on the architecture is following up soon(TM). I Promise!
+![Architecture](./meta/documentation/microtope_overview.png)
 
 ## How to run
 

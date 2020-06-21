@@ -28,18 +28,11 @@ The `verify` in maven is very important! It checks for your coverage.
 
 You maybe want to skip it and can even build your docker image with it - but the build pipeline wont be cheated :)
 
-## ToDo
-
-- Logging with Log4j2
-- Automate Docker Build into Maven? (Currently, the missmatching versions suck a little)
-- IntegrationTest
-
 ## Requirements
 
 - Java 12
-- Maven 3
 - Docker 18
-- The ActiveMQ Dockerfile from the other Microworld Project (But any ActiveMQ should work)
+- The ActiveMQ Dockerfile from the other Microtope Project (But any ActiveMQ should work)
 
 ## TroubleShooting
 

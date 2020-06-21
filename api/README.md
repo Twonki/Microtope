@@ -2,7 +2,7 @@
 
 This repository contains the files for the microtope api.
 
-It reads from the database and returns json objects in a REST-way.
+It reads from the database and returns json objects in a RESTful-way.
 
 ## How to Build and run
 
@@ -25,8 +25,6 @@ If you have a database connected (and running) you can visit localhost:8080/api/
 
 ## Build with
 
-- Docker 18
-- NPM 3.5.2
-- Node 8.10 (12.8.1 in the Docker Container!)
-- Typescript 3.5
+- Docker
+- Node
 - [Wait-for-it](https://github.com/vishnubob/wait-for-it)
