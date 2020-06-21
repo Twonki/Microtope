@@ -18,7 +18,7 @@ The Application currently is quite stringend:
 6. An API is able to read the mariadb on demand and extract data as JSON-Documents
 7. An UI is able to display and interact with the data granted from the API
 
-![Architecture](./meta/documentation/microtope_overview.png)
+![Architecture](./meta/documentation/Microtope_Overview.PNG)
 
 ## How to run
 
