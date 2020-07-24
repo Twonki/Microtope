@@ -23,7 +23,7 @@
   "dependencies": {
     "express": "4.17.1",
     "cors": "2.8.5",
-    "mariadb": "2.4.1",
+    "mariadb": "2.4.2",
     "typescript-logging": "^0.6.3"
   }
 }
