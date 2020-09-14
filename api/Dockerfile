@@ -1,4 +1,4 @@
-FROM node:14.10.0-alpine
+FROM node:14.10.1-alpine
 
 # Adding bash, as wait-for-it needs bash
 RUN apk add --no-cache bash
