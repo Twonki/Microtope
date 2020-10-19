@@ -5,7 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class SqlConfig {
-	private static Logger logger = LogManager.getLogger(SqlConfig.class);
+	private static final Logger logger = LogManager.getLogger(SqlConfig.class);
 
     public String addressToConnect = null;
     public String portToConnect = null;

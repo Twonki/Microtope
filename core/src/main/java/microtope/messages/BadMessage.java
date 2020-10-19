@@ -6,7 +6,7 @@ public class BadMessage implements AmqMessage {
 	
 	@Override
 	public boolean equals(Object o) {
-		return o instanceof BadMessage ? true : false;
+		return o instanceof BadMessage;
 	}
 
 	public void setTimeStamp(Date date) {

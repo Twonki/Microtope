@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 
 public final class AmqMessageParser {
-	private static Logger logger = LogManager.getLogger(AmqMessageParser.class);
+	private static final Logger logger = LogManager.getLogger(AmqMessageParser.class);
 	
 	private static final Pattern loginPattern = Pattern.compile("E: Player (\\d+) logged in for team (\\d+)");
 	private static final Pattern logoutPattern = Pattern.compile("E: Player (\\d+) logged out");

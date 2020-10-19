@@ -7,12 +7,8 @@ public abstract class ValueChecker {
 		if (goodIPv4(urlToCheck)) {
 			return true;
 		}
-		if (isValidDomain(urlToCheck)) {
-			return true;	
-		}
-		
-		return false;
-	}
+        return isValidDomain(urlToCheck);
+    }
 	
 	public static boolean isValidDomain(String addStr) {
 		boolean ret = true;
@@ -73,11 +69,8 @@ public abstract class ValueChecker {
 	                return false;
 	            }
 	        }
-	        if (ipToCheck.endsWith(".")) {
-	        	return false;
-	        }
-	        return true;
-	    } catch (NumberFormatException nfe) {
+            return !ipToCheck.endsWith(".");
+        } catch (NumberFormatException nfe) {
 	        return false;
 	    }
 	}

@@ -5,7 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ActiveMqConfiguration {
-	private static Logger logger = LogManager.getLogger(ActiveMqConfiguration.class);
+	private static final Logger logger = LogManager.getLogger(ActiveMqConfiguration.class);
 
     public String addressToConnect = null;
     public String portToConnect = null;
