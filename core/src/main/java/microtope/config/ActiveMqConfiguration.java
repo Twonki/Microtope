@@ -91,8 +91,12 @@ public class ActiveMqConfiguration {
      * @return the build ActiveMQConfiguration-Object, returns an empty configuration on invalid / missing properties.
      */
     public static ActiveMqConfiguration createConfigFromProperties(Map<String,String> properties) {
-        String address, port, queue, user="Anonymus",password = null;
-        if (properties.containsKey("ActiveMqAddress")&& !properties.get("ActiveMqAddress").isEmpty()) {
+        String address;
+        String port;
+        String queue;
+        String user = "Anonymus";
+        String password = null;
+        if (properties.containsKey("ActiveMqAddress") && !properties.get("ActiveMqAddress").isEmpty()) {
             address = properties.get("ActiveMqAddress");
         } else {
             logger.error("Received null or empty address");
@@ -112,9 +116,9 @@ public class ActiveMqConfiguration {
         }
         // For User and Password, it does not fail on an missing entry
         // The password is only looked for if there is a user (would not make sense otherwise)
-        if (properties.containsKey("ActiveMqUser")){
+        if (properties.containsKey("ActiveMqUser")) {
             user = properties.get("ActiveMqUser");
-            if (properties.containsKey("ActiveMqPassword")){
+            if (properties.containsKey("ActiveMqPassword")) {
                 password = properties.get("ActiveMqPassword");
             } else {
                 logger.warn("Received a user but no password.");

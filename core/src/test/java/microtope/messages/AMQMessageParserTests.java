@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import javax.jms.*;
+import java.util.Enumeration;
+
 class AMQMessageParserTests {
 
 	@Test
@@ -129,7 +132,30 @@ class AMQMessageParserTests {
 		
 		assertTrue(equal);
 	}
-	
+
+	@Test
+    void testTextMessageParser_nullMessage_shouldGiveBadMessage() {
+        String message = null;
+
+        AmqMessage expected = new BadMessage();
+
+        AmqMessage parsed = AmqMessageParser.parseTextMessage(message);
+
+        assertEquals(expected,parsed);
+    }
+
+    @Test
+    void testTextMessageParser_missingPrefix_shouldGiveBadMessage() {
+	    // This message is generally valid, but has no Prefix
+        String message = "Player 3745 collected 1 coins for Team PURPLE";
+
+        AmqMessage expected = new BadMessage();
+
+        AmqMessage parsed = AmqMessageParser.parseTextMessage(message);
+
+        assertEquals(expected,parsed);
+    }
+
 	@Test
 	void testTextMessageParser_parseStepsMessage_EverythingCorrect_shouldBeParsed() {
 		String message = "M: Player 37845 moved 14 steps";
@@ -140,4 +166,33 @@ class AMQMessageParserTests {
 		
 		assertEquals(expected,parsed);
 	}
+
+	@Test
+    void testJmsMessageParser_validTextMessage_shouldBeParsed(){
+        String message = "M: Player 37845 moved 14 steps";
+
+        AmqMessage expected = new StepMessage(37845,14);
+
+        var mockMessage = new MockTextMessage();
+        mockMessage.text = message;
+
+        AmqMessage parsed = AmqMessageParser.parseJmsMessage(mockMessage);
+
+        assertEquals(expected,parsed);
+    }
+
+    @Test
+    void testJmsMessageParser_MessageThrowsException_GivesBadMessage(){
+        String message = "M: Player 37845 moved 14 steps";
+
+        AmqMessage expected = new BadMessage();
+
+        var mockMessage = new MockTextMessage();
+        mockMessage.text = message;
+        mockMessage.throwsJMSException = true;
+
+        AmqMessage parsed = AmqMessageParser.parseJmsMessage(mockMessage);
+
+        assertEquals(expected,parsed);
+    }
 }

@@ -92,8 +92,12 @@ public class SqlConfig {
      * @return the build SqlConfig-Object, returns an empty configuration on invalid / missing properties.
      */
     public static SqlConfig createConfigFromProperties(Map<String,String> properties) {
-        String address, port, queue, user="Anonymus",password = null;
-        if (properties.containsKey("SqlAddress")&& !properties.get("SqlAddress").isEmpty()) {
+        String address;
+        String port;
+        String queue;
+        String user = "Anonymus";
+        String password = null;
+        if (properties.containsKey("SqlAddress") && !properties.get("SqlAddress").isEmpty()) {
             address = properties.get("SqlAddress");
         } else {
             logger.error("Received null or empty SqlAddress");
@@ -113,9 +117,9 @@ public class SqlConfig {
         }
         // For User and Password, it does not fail on an missing entry
         // The password is only looked for if there is a user (would not make sense otherwise)
-        if (properties.containsKey("SqlUser")){
+        if (properties.containsKey("SqlUser")) {
             user = properties.get("SqlUser");
-            if (properties.containsKey("SqlPassword")){
+            if (properties.containsKey("SqlPassword")) {
                 password = properties.get("SqlPassword");
             } else {
                 logger.warn("Received a SqlUser but no password.");

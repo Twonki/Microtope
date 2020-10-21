@@ -1,15 +1,26 @@
 package microtope.data;
 
-
+/**
+ * This class provides a few static methods to check for string formats to fit in certain schemas.
+ */
 public abstract class ValueChecker {
 
+    /**
+     * Checks whether an url is either a valid IP4 Address or a valid domain
+     * @param urlToCheck the item to check
+     * @return true if the Url is a valid IP4-Address or a valid domain
+     */
 	public static boolean goodUrl(String urlToCheck) {
 		if (goodIPv4(urlToCheck)) {
 			return true;
 		}
         return isValidDomain(urlToCheck);
     }
-	
+
+    /**
+     * Checks if the given String can be seen as a valid Domain-name.
+     * For further information what is done, look at the inline comments or the Test-Cases.
+     */
 	public static boolean isValidDomain(String addStr) {
 		boolean ret = true;
 		
@@ -50,8 +61,12 @@ public abstract class ValueChecker {
 		}		
 		return ret;
 	}
-	
-	
+
+    /**
+     * Checks if the given String is not null, not empty and can be parsed into a valid IP4-Address.
+     * To check for the IP4-Address, the String is split by it's point,
+     * and if there are 4 parts after splitting each is checked to be a number between 0 and 255.
+     */
 	public static boolean goodIPv4(String ipToCheck) {
 		try {
 	        if (ipToCheck == null || ipToCheck.isEmpty()) {
@@ -74,7 +89,12 @@ public abstract class ValueChecker {
 	        return false;
 	    }
 	}
-	
+
+    /**
+     * Checks if the given String is not null, not empty and can be parsed to a positive integer
+     * @param portToCheck the String to inspect for being a port
+     * @return whether the String can be translated to a valid port
+     */
 	public static boolean goodPort(String portToCheck) {
 		if (portToCheck == null || portToCheck.isEmpty()) {
 			return false;	
