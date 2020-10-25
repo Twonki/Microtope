@@ -2,9 +2,9 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>git.twonki.microtope</groupId>
   <artifactId>core</artifactId>
-  <version>0.1.2</version>
+  <version>0.1.3</version>
   <name>core-library</name>
-  <description>shared libraries and classes for the microtope java parts	</description>
+  <description>shared libraries and classes for the microtope java parts</description>
   <packaging>jar</packaging>
 
   <properties>

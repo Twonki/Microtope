@@ -4,11 +4,11 @@ Hey there! This is my try on a multi-language microservice architecture!
 Hope you enjoy your stay. Feel free to contribute to any language and project fit for you.
 
 I also would love someone who just runs the project on his docker and opens issues wherever he finds some.
-The bad words you'll hear are just a way to express my happyness.
+The bad words you'll hear are just a way to express my happiness.
 
 ## Architecture
 
-The Application currently is quite stringend:
+The Application currently is quite stringent:
 
 1. A Java Application creates messages and puts it into an ActiveMQ-Artemis
 2. An ActiveMQ Image is hosted

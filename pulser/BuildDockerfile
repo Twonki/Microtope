@@ -6,7 +6,9 @@ FROM maven:3.6.1-jdk-12 as builder
 # Build the dependencies
 
 WORKDIR /dependencies 
-COPY ./Core . 
+RUN apk install git
+RUN git clone https://github.com/Twonki/Microtope.git
+RUN cd core
 Run mvn install package verify
 
 WORKDIR /app
@@ -18,6 +20,9 @@ RUN mvn package verify
 
 #### STAGE 2
 #### Deploying the application
+
+# 0.2.0
+ARG PULSER_VERSION 
 
 FROM azul/zulu-openjdk-alpine:15.0.0
 
@@ -32,10 +37,10 @@ RUN apk update && apk add bash
 
 RUN mkdir -p $dir
 
-COPY --from=builder /app/target/pulser-0.2.0-jar-with-dependencies.jar $dir
+COPY --from=builder /app/target/pulser-$PULSER_VERSION-jar-with-dependencies.jar $dir
 
 COPY --from=builder /app/utils/wait-for-it.sh $dir
 
 WORKDIR $dir
 
-ENTRYPOINT ["/bin/bash", "-c", "./wait-for-it.sh -t 0 -s --host=$ActiveMQ_Adress --port=$ActiveMQ_Port -- java -jar pulser-0.1.0-jar-with-dependencies.jar $ActiveMQ_Adress $ActiveMQ_Port $ActiveMQ_Queue $ActiveMQ_User $ActiveMQ_Pwd "]
+ENTRYPOINT ["/bin/bash", "-c", "./wait-for-it.sh -t 0 -s --host=$ActiveMQ_Adress --port=$ActiveMQ_Port -- java -jar pulser-$PULSER_VERSION-jar-with-dependencies.jar $ActiveMQ_Adress $ActiveMQ_Port $ActiveMQ_Queue $ActiveMQ_User $ActiveMQ_Pwd "]
