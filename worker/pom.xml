@@ -223,30 +223,12 @@
 		     </execution>
 	       </executions>
     	</plugin>
-   		
-		<plugin>
-	        <groupId>org.apache.maven.plugins</groupId>
-	        <artifactId>maven-pmd-plugin</artifactId>
-            <version>3.13.0</version>
-	        <configuration>
-	            <failOnViolation>false</failOnViolation> <!-- this is actually true by default, but can be disabled -->
-	            <printFailingErrors>true</printFailingErrors>
-	        </configuration>
-	        <executions>
-	          <execution>
-	            <goals>
-	              <goal>check</goal>
-	            </goals>
-	          </execution>
-	        </executions>
-     	 </plugin>
-     	 	       		
 	            <plugin>
 	                <groupId>org.apache.maven.plugins</groupId>
 	                <artifactId>maven-compiler-plugin</artifactId>
 	                <version>3.8.1</version>
 	                <configuration>
-	                    <release>12</release>
+	                    <release>15</release>
 	                </configuration>
 	            </plugin>
 	            <plugin>
