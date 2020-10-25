@@ -1,7 +1,7 @@
 ##### Stage 1
 ##### Build and Run tests
 
-FROM maven:3.6.1-jdk-12 as builder
+FROM maven:3.6.1-jdk-15 as builder
 
 # Build the dependencies
 

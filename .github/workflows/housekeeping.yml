@@ -16,14 +16,6 @@ on:
       - unlocked
 
 jobs:
-  greet:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/first-interaction@v1
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        pr-message: 'Thank you for Contributing! Take the time until I check your appreciated Pull Request to see if any labels are missing and watch the pipeline :) '
-
   label:
     runs-on: ubuntu-latest
     steps:

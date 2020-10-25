@@ -10,8 +10,8 @@
   <description>Long Running Service. Takes Messages from an ActiveMQ and puts it into a database</description>
   <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>12</maven.compiler.source>
-        <maven.compiler.target>12</maven.compiler.target>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
   </properties>
   
   <name>worker</name>
