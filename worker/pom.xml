@@ -138,12 +138,12 @@
 						      <limit>
 						        <counter>LINE</counter>
 						        <value>COVEREDRATIO</value>
-						        <minimum>40%</minimum>
+						        <minimum>30%</minimum>
 						      </limit>
 							      <limit>
 							        <counter>INSTRUCTION</counter>
 							        <value>COVEREDRATIO</value>
-							        <minimum>0.40</minimum>
+							        <minimum>0.30</minimum>
 							      </limit>
 						       <limit>
 						        <counter>CLASS</counter>
@@ -162,7 +162,7 @@
 						      <limit>
 						        <counter>LINE</counter>
 						        <value>COVEREDRATIO</value>
-						        <minimum>70%</minimum>
+						        <minimum>40%</minimum>
 						      </limit>
 						    </limits>
 						  </rule>
@@ -177,12 +177,12 @@
 						      <limit>
 						        <counter>LINE</counter>
 						        <value>COVEREDRATIO</value>
-						        <minimum>40%</minimum>
+						        <minimum>30%</minimum>
 						      </limit>
 						        <limit>
 						        <counter>INSTRUCTION</counter>
 						        <value>COVEREDRATIO</value>
-						        <minimum>40%</minimum>
+						        <minimum>30%</minimum>
 						      </limit>
 						    </limits>
 						  </rule>
@@ -229,9 +229,8 @@
 	        <artifactId>maven-pmd-plugin</artifactId>
             <version>3.13.0</version>
 	        <configuration>
-	            <failOnViolation>true</failOnViolation> <!-- this is actually true by default, but can be disabled -->
+	            <failOnViolation>false</failOnViolation> <!-- this is actually true by default, but can be disabled -->
 	            <printFailingErrors>true</printFailingErrors>
-	            <allowedViolations>3</allowedViolations>
 	        </configuration>
 	        <executions>
 	          <execution>
