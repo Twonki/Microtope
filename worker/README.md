@@ -8,7 +8,11 @@ This provides a high grade of testability and potential other sources to load da
 
 ## To Build
 
-With docker: `docker build -f BuildDockerfile . -t microtope/worker`
+With pure docker:
+
+```bash
+docker build . -f BuildDockerfile --build-arg WORKER_VERSION=x.x.x -t microtope/worker
+```
 
 Manually:
 

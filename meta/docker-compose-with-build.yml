@@ -37,7 +37,9 @@ services:
   pulser:
     build:
       context: ../pulser/
-      dockerfile: Dockerfile
+      dockerfile: BuildDockerfile
+      args:
+        PULSER_VERSION: 0.2.0
     image: microtope/pulser:latest
     depends_on: 
       - amq
@@ -65,7 +67,9 @@ services:
   worker:
     build:
       context: ../worker/
-      dockerfile: Dockerfile
+      dockerfile: BuildDockerfile
+      args:
+        WORKER_VERSION: 0.2.1
     image: microtope/worker:latest
     networks:
       - backend

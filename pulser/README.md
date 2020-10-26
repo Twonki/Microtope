@@ -16,7 +16,11 @@ Additional environment parameters:
 
 ## To Build
 
-With docker: `docker build -f BuildDockerfile . -t microtope/pulser`
+With pure docker:
+
+```bash
+docker build . -f BuildDockerfile --build-arg PULSER_VERSION=x.x.x -t microtope/pulser
+```
 
 Manually:
 
