@@ -1,25 +1,24 @@
 ##### Stage 1
 ##### Build and Run tests
 
-FROM maven:3.6.1-jdk-12 as builder
+FROM maven:3.6-openjdk-15 as builder
 
 # Build the dependencies
-
-WORKDIR /dependencies 
-COPY ./Core . 
-Run mvn install package verify
 
 WORKDIR /app
 
 # Copy project files to the docker image
 COPY . .
 
-RUN mvn package verify
+RUN mvn -s settings.xml package verify
 
 #### STAGE 2
 #### Deploying the application
 
 FROM azul/zulu-openjdk-alpine:15.0.0
+
+# 0.2.1
+ARG WORKER_VERSION
 
 ENV dir /usr/app
 ENV ActiveMQ_Adress 127.0.0.1
@@ -38,10 +37,13 @@ RUN apk update && apk add bash
 
 RUN mkdir -p $dir
 
-COPY --from=builder /app/target/worker-0.1.0-jar-with-dependencies.jar $dir
+COPY --from=builder /app/target/worker-$WORKER_VERSION-jar-with-dependencies.jar $dir
 
 COPY --from=builder /app/utils/wait-for-it.sh $dir
 
 WORKDIR $dir
 
-ENTRYPOINT ["/bin/bash", "-c", "./wait-for-it.sh -t 0 -s --host=$ActiveMQ_Adress --port=$ActiveMQ_Port -- ./wait-for-it.sh -t 0 -s --host=$MariaDB_Adress --port=$MariaDB_Port -- java -jar worker-0.1.0-jar-with-dependencies.jar $ActiveMQ_Adress $ActiveMQ_Port $ActiveMQ_Queue $ActiveMQ_User $ActiveMQ_Pwd $MariaDB_Adress $MariaDB_Port $MariaDB_DatabaseName $MariaDB_User $MariaDB_PW"]
+# The Worker version is not accessible at runtime, hence workaround at build time
+RUN mv worker-$WORKER_VERSION-jar-with-dependencies.jar worker.jar
+
+ENTRYPOINT ["/bin/bash", "-c", "./wait-for-it.sh -t 0 -s --host=$ActiveMQ_Adress --port=$ActiveMQ_Port -- ./wait-for-it.sh -t 0 -s --host=$MariaDB_Adress --port=$MariaDB_Port -- java -jar worker.jar $ActiveMQ_Adress $ActiveMQ_Port $ActiveMQ_Queue $ActiveMQ_User $ActiveMQ_Pwd $MariaDB_Adress $MariaDB_Port $MariaDB_DatabaseName $MariaDB_User $MariaDB_PW"]

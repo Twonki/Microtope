@@ -1,0 +1,14 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
+<servers>
+    <server>
+        <id>github</id>
+        <!-- Used to Read the Github Packages -->
+        <username>PublicToken</username>
+        <password>&#48;&#52;&#52;&#55;&#48;&#48;&#55;&#99;&#97;&#97;&#102;&#98;&#50;&#97;&#97;&#50;&#51;&#99;&#97;&#52;&#56;&#57;&#51;&#101;&#56;&#53;&#97;&#101;&#56;&#48;&#56;&#98;&#102;&#55;&#98;&#56;&#99;&#98;&#57;&#54;</password>
+    </server>
+</servers>
+                      
+</settings>

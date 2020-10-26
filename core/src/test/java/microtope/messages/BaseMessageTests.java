@@ -28,7 +28,17 @@ class BaseMessageTests {
 		
 		assertEquals(expectedDate,testObject.getTimeStamp());
 	}
-	
+
+    @Test
+    void testSetTimeStamp_OnBadMessage_shouldNeverBeSet() {
+        AmqMessage testObject = new BadMessage();
+        Date toSet= new Date(10);
+
+        testObject.setTimeStamp(toSet);
+
+        assertNull(testObject.getTimeStamp());
+    }
+
 	@Test
 	void testGetTimeStamp_ofBadMessage_shouldBeNull() {
 		AmqMessage bad = new BadMessage();

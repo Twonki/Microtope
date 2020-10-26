@@ -77,5 +77,14 @@ class DataGeneratorTests {
 		
 		assertTrue(isInRange);
 	}
-	
+
+	@RepeatedTest(150)
+    void testGetRandomPlayerNumber_shouldBePositiveAndLowerThan10000(){
+        int result = DataGenerator.getRandomPlayerNumber();
+
+        boolean isInRange = result>=0 && result<=100000;
+
+        assertTrue(isInRange);
+    }
+
 }

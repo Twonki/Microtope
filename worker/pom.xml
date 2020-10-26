@@ -10,18 +10,25 @@
   <description>Long Running Service. Takes Messages from an ActiveMQ and puts it into a database</description>
   <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>12</maven.compiler.source>
-        <maven.compiler.target>12</maven.compiler.target>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
   </properties>
   
   <name>worker</name>
+
+  <repositories>
+    <repository>
+        <id>github</id>
+        <url>https://maven.pkg.github.com/twonki/*</url>
+    </repository>
+  </repositories>
 
   <dependencies>
   	<dependency>
   	<!-- This is my own dependency in the nearby folder --> 
   		<groupId>git.twonki.microtope</groupId>
 		 <artifactId>core</artifactId>
-		 <version>0.1.2</version>
+		 <version>0.1.3</version>
   	</dependency>
   
   	<!-- ActiveMQ Related -->
@@ -131,12 +138,12 @@
 						      <limit>
 						        <counter>LINE</counter>
 						        <value>COVEREDRATIO</value>
-						        <minimum>40%</minimum>
+						        <minimum>30%</minimum>
 						      </limit>
 							      <limit>
 							        <counter>INSTRUCTION</counter>
 							        <value>COVEREDRATIO</value>
-							        <minimum>0.40</minimum>
+							        <minimum>0.30</minimum>
 							      </limit>
 						       <limit>
 						        <counter>CLASS</counter>
@@ -155,7 +162,7 @@
 						      <limit>
 						        <counter>LINE</counter>
 						        <value>COVEREDRATIO</value>
-						        <minimum>70%</minimum>
+						        <minimum>40%</minimum>
 						      </limit>
 						    </limits>
 						  </rule>
@@ -170,12 +177,12 @@
 						      <limit>
 						        <counter>LINE</counter>
 						        <value>COVEREDRATIO</value>
-						        <minimum>40%</minimum>
+						        <minimum>30%</minimum>
 						      </limit>
 						        <limit>
 						        <counter>INSTRUCTION</counter>
 						        <value>COVEREDRATIO</value>
-						        <minimum>40%</minimum>
+						        <minimum>30%</minimum>
 						      </limit>
 						    </limits>
 						  </rule>
@@ -216,32 +223,10 @@
 		     </execution>
 	       </executions>
     	</plugin>
-   		
-		<plugin>
-	        <groupId>org.apache.maven.plugins</groupId>
-	        <artifactId>maven-pmd-plugin</artifactId>
-            <version>3.13.0</version>
-	        <configuration>
-	            <failOnViolation>true</failOnViolation> <!-- this is actually true by default, but can be disabled -->
-	            <printFailingErrors>true</printFailingErrors>
-	            <allowedViolations>3</allowedViolations>
-	        </configuration>
-	        <executions>
-	          <execution>
-	            <goals>
-	              <goal>check</goal>
-	            </goals>
-	          </execution>
-	        </executions>
-     	 </plugin>
-     	 	       		
 	            <plugin>
 	                <groupId>org.apache.maven.plugins</groupId>
 	                <artifactId>maven-compiler-plugin</artifactId>
 	                <version>3.8.1</version>
-	                <configuration>
-	                    <release>12</release>
-	                </configuration>
 	            </plugin>
 	            <plugin>
 	            <groupId>org.apache.maven.plugins</groupId>

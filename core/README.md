@@ -22,7 +22,7 @@ Its considered best practice to always clean when building bibs.
 
 `mvn deploy`
 
-should deploy the application. 
+should deploy the application.
 
 Due to maven logic, this will fail if there was not atleast a minor release. (e.g. from 1.0.1 to 1.0.2).
 
@@ -30,14 +30,12 @@ Make sure to setup your xml-settings [as from the github guide](https://help.git
 
 ## Reading the Package
 
-You must setup your settings similiar to above, but a read:package right is enough. 
+You must setup your settings similiar to above, but a read:package right is enough.
 
-As far as I understand, you need to have a github account in the package beta to access the packages. 
+As far as I understand, you need to have a github account in the package beta to access the packages.
 
-The account also needs to have read package rights. As soon as possible I want to publish "true" public, but git has not yet told me how. 
-I dont want to provide a read-only token from my account as this is against the rules :( 
-But I am german so I obey the rules.  
-
+There [is an example project](https://github.com/jcansdale-test/maven-consume) on how to set up anonymus access, and I hope I did everything correct.
+Also, there is a [*vivid* discussion](https://github.community/t/download-from-github-package-registry-without-authentication/14407/68) on the matter.  
 
 ## Troubleshooting
 

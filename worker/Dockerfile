@@ -1,5 +1,8 @@
 FROM azul/zulu-openjdk-alpine:15.0.0
 
+# 0.2.1
+ARG WORKER_VERSION
+
 ENV dir /usr/app
 ENV ActiveMQ_Adress 127.0.0.1
 ENV ActiveMQ_Port 61616
@@ -17,10 +20,10 @@ RUN apk update && apk add bash
 
 RUN mkdir -p $dir
 
-COPY ./target/worker-0.2.1-jar-with-dependencies.jar $dir
+COPY ./target/worker-$WORKER_VERSION-jar-with-dependencies.jar $dir
 
 COPY ./utils/wait-for-it.sh $dir
 
 WORKDIR $dir
 
-ENTRYPOINT ["/bin/bash", "-c", "./wait-for-it.sh -t 0 -s --host=$ActiveMQ_Adress --port=$ActiveMQ_Port -- ./wait-for-it.sh -t 0 -s --host=$MariaDB_Adress --port=$MariaDB_Port -- java -jar worker-0.2.1-jar-with-dependencies.jar $ActiveMQ_Adress $ActiveMQ_Port $ActiveMQ_Queue $ActiveMQ_User $ActiveMQ_Pwd $MariaDB_Adress $MariaDB_Port $MariaDB_DatabaseName $MariaDB_User $MariaDB_PW"]
+ENTRYPOINT ["/bin/bash", "-c", "./wait-for-it.sh -t 0 -s --host=$ActiveMQ_Adress --port=$ActiveMQ_Port -- ./wait-for-it.sh -t 0 -s --host=$MariaDB_Adress --port=$MariaDB_Port -- java -jar worker-$WORKER_VERSION-jar-with-dependencies.jar $ActiveMQ_Adress $ActiveMQ_Port $ActiveMQ_Queue $ActiveMQ_User $ActiveMQ_Pwd $MariaDB_Adress $MariaDB_Port $MariaDB_DatabaseName $MariaDB_User $MariaDB_PW"]
