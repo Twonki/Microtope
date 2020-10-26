@@ -13,6 +13,7 @@ services:
       - ./configs/docker_compose/ui/:/usr/share/nginx/html/config/
     ports:
       - "80:80"
+      - "443:443"
     networks:
       - frontend
     depends_on: 

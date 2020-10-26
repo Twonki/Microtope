@@ -34,4 +34,7 @@ COPY --from=builder /app/utils/wait-for-it.sh $dir
 
 WORKDIR $dir
 
-ENTRYPOINT ["/bin/bash", "-c", "./wait-for-it.sh -t 0 -s --host=$ActiveMQ_Adress --port=$ActiveMQ_Port -- java -jar pulser-$PULSER_VERSION-jar-with-dependencies.jar $ActiveMQ_Adress $ActiveMQ_Port $ActiveMQ_Queue $ActiveMQ_User $ActiveMQ_Pwd "]
+# The Pulser version is not accessible at runtime, hence workaround at build time
+RUN mv pulser-$PULSER_VERSION-jar-with-dependencies.jar pulser.jar
+
+ENTRYPOINT ["/bin/bash", "-c", "./wait-for-it.sh -t 0 -s --host=$ActiveMQ_Adress --port=$ActiveMQ_Port -- java -jar pulser.jar $ActiveMQ_Adress $ActiveMQ_Port $ActiveMQ_Queue $ActiveMQ_User $ActiveMQ_Pwd "]
